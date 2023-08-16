@@ -1,0 +1,46 @@
+{
+    "users": [
+        {
+            "id": 0,
+            "name": "Felipe Sales",
+            "email": "soufeliposales@gmail.com",
+            "password": "123"
+        },
+        {
+            "id": 1,
+            "name": "Italo",
+            "email": "italo@gmail.com",
+            "password": "1234"
+        }
+    ],
+    "adm_users": [
+        {
+            "id": 1,
+            "name": "Felipe Sales",
+            "email": "soufeliposales@gmail.com",
+            "password": "123",
+            "profile": "ADMIN"
+        },
+        {
+            "id": 2,
+            "name": "Italo",
+            "email": "italo@gmail.com",
+            "password": "1234",
+            "profile": "SUPORTE"
+        }
+    ],
+    "products": [
+        {
+            "id": 0,
+            "title": "Decisão"
+        },
+        {
+            "id": 1,
+            "title": "Jornada Dev"
+        },
+        {
+            "id": 2,
+            "title": "Wayer"
+        }
+    ]
+}

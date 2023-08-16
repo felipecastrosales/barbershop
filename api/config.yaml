@@ -9,6 +9,6 @@ auth:
   unauthorizedStatusCode: 403
   urlSkip:
     - /images/:
-        method: get
+       method: get
     - /users:
-        method: post
+       method: post

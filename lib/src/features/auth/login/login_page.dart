@@ -1,5 +1,8 @@
+import 'package:barbershop/src/core/constants.dart';
+import 'package:barbershop/src/core/ui/helpers/form_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:validatorless/validatorless.dart';
 
 final class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
@@ -28,7 +31,7 @@ final class _LoginPageState extends ConsumerState<LoginPage> {
       body: DecoratedBox(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/images/background_image_chair.jpg'),
+            image: AssetImage(ImageConstants.backgroundChair),
             fit: BoxFit.cover,
             opacity: 0.2,
           ),
@@ -48,13 +51,18 @@ final class _LoginPageState extends ConsumerState<LoginPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Image.asset(
-                            'assets/images/imgLogo.png',
+                            ImageConstants.imgLogo,
                             width: 150,
                             height: 170,
                           ),
                           const SizedBox(height: 24),
                           TextFormField(
                             controller: emailController,
+                            onTapOutside: (_) => context.unfocus(),
+                            validator: Validatorless.multiple([
+                              Validatorless.required('E-mail obrigatório'),
+                              Validatorless.email('E-mail inválido'),
+                            ]),
                             decoration: const InputDecoration(
                               label: Text('E-mail'),
                               labelStyle: TextStyle(color: Colors.black),
@@ -67,6 +75,11 @@ final class _LoginPageState extends ConsumerState<LoginPage> {
                           const SizedBox(height: 24),
                           TextFormField(
                             controller: passwordController,
+                            onTapOutside: (_) => context.unfocus(),
+                            validator: Validatorless.multiple([
+                              Validatorless.required('Senha obrigatória'),
+                              Validatorless.min(6, 'Senha inválida'),
+                            ]),
                             obscureText: true,
                             decoration: const InputDecoration(
                               label: Text('Senha'),

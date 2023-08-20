@@ -20,6 +20,8 @@ class BarbershopApp extends StatelessWidget {
             '/': (context) => const SplashPage(),
             '/barbers': (context) => const BarbersPage(),
             '/barbers/:id': (context) => const BarberPage(),
+            '/home/adm': (_) => const Text('ADM'),
+            '/home/employee': (_) => const Text('EMPLOYEE'),
           },
         );
       },

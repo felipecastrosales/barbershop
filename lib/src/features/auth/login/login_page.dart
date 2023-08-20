@@ -41,9 +41,11 @@ final class _LoginPageState extends ConsumerState<LoginPage> {
           case LoginState(status: LoginStateStatus.error):
             context.showError('Erro ao realizar login');
           case LoginState(status: LoginStateStatus.admLogin):
-            break;
+            Navigator.of(context)
+                .pushNamedAndRemoveUntil('/home/adm', (_) => false);
           case LoginState(status: LoginStateStatus.employeeLogin):
-            break;
+            Navigator.of(context)
+                .pushNamedAndRemoveUntil('/home/employee', (_) => false);
         }
       },
     );

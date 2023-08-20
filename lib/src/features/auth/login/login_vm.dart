@@ -3,6 +3,7 @@ import 'package:barbershop/src/core/exceptions/service_exception.dart';
 import 'package:barbershop/src/core/fp/either.dart';
 import 'package:barbershop/src/core/providers/application_providers.dart';
 import 'package:barbershop/src/features/auth/login/login_state.dart';
+import 'package:barbershop/src/models/user_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'login_vm.g.dart';
@@ -23,7 +24,22 @@ class LoginVM extends _$LoginVM {
 
     switch (result) {
       case Success():
-        break;
+        ref.invalidate(getMeProvider);
+        ref.invalidate(getMyBarbershopProvider); //cascade
+        final userModel = await ref.read(getMeProvider.future);
+        switch (userModel) {
+          case UserModelADM():
+            state = state.copyWith(status: LoginStateStatus.admLogin);
+          case UserModelEmployee():
+            state = state.copyWith(status: LoginStateStatus.employeeLogin);
+        }
+      // state.copyWith(
+      //   status: switch (userModel) {
+      //     UserModelADM() => LoginStateStatus.admLogin,
+      //     UserModelEmployee() => LoginStateStatus.employeeLogin,
+      //   },
+      // );
+
       case Failure(exception: ServiceException(:final message)):
         state = state.copyWith(
           status: LoginStateStatus.error,

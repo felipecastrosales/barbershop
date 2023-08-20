@@ -1,5 +1,8 @@
 import 'package:barbershop/src/core/constants.dart';
 import 'package:barbershop/src/core/ui/helpers/form_helper.dart';
+import 'package:barbershop/src/core/ui/helpers/messages.dart';
+import 'package:barbershop/src/features/auth/login/login_state.dart';
+import 'package:barbershop/src/features/auth/login/login_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:validatorless/validatorless.dart';
@@ -25,6 +28,26 @@ final class _LoginPageState extends ConsumerState<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    final LoginVM(:login) = ref.watch(loginVMProvider.notifier);
+
+    ref.listen(
+      loginVMProvider,
+      (_, state) {
+        switch (state) {
+          case LoginState(status: LoginStateStatus.initial):
+            break;
+          case LoginState(status: LoginStateStatus.error, :final errorMessage?):
+            context.showError(errorMessage);
+          case LoginState(status: LoginStateStatus.error):
+            context.showError('Erro ao realizar login');
+          case LoginState(status: LoginStateStatus.admLogin):
+            break;
+          case LoginState(status: LoginStateStatus.employeeLogin):
+            break;
+        }
+      },
+    );
+
     return Scaffold(
       backgroundColor: Colors.black,
       resizeToAvoidBottomInset: false,
@@ -103,7 +126,15 @@ final class _LoginPageState extends ConsumerState<LoginPage> {
                           ),
                           const SizedBox(height: 24),
                           ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () =>
+                                switch (formKey.currentState?.validate()) {
+                              (false || null) =>
+                                context.showError('Campos inválidos'),
+                              true => login(
+                                  emailController.text,
+                                  passwordController.text,
+                                ),
+                            },
                             style: ElevatedButton.styleFrom(
                               minimumSize: const Size.fromHeight(56),
                             ),

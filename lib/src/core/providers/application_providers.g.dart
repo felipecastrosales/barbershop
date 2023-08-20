@@ -50,5 +50,19 @@ final userLoginServiceProvider = Provider<UserLoginService>.internal(
 );
 
 typedef UserLoginServiceRef = ProviderRef<UserLoginService>;
+String _$getMeHash() => r'835de91f459d1216fe7813de1ce4ffa8c28975d4';
+
+/// See also [getMe].
+@ProviderFor(getMe)
+final getMeProvider = FutureProvider<UserModel>.internal(
+  getMe,
+  name: r'getMeProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$getMeHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef GetMeRef = FutureProviderRef<UserModel>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member

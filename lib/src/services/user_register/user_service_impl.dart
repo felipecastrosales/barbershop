@@ -5,6 +5,7 @@ import 'package:barbershop/src/core/fp/either.dart';
 import 'package:barbershop/src/core/fp/nil.dart';
 import 'package:barbershop/src/repositories/user/user_repository.dart';
 
+/// to ADM
 final class UserRegisterServiceImpl implements UserRegisterService {
   UserRegisterServiceImpl({
     required UserRepository userRepository,

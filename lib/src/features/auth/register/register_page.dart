@@ -1,4 +1,7 @@
+import 'package:barbershop/src/core/fp/nil.dart';
 import 'package:barbershop/src/core/ui/helpers/form_helper.dart';
+import 'package:barbershop/src/core/ui/helpers/messages.dart';
+import 'package:barbershop/src/features/auth/register/register_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:validatorless/validatorless.dart';
@@ -16,8 +19,24 @@ final class _RegisterPageState extends ConsumerState<RegisterPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
+  // final register =
+  //     (nameController.text, emailController.text, passwordController.text);f
+
   @override
   Widget build(BuildContext context) {
+    final registerVM = ref.watch(registerVMProvider.notifier);
+
+    ref.listen(
+      registerVMProvider,
+      (_, state) => switch (state) {
+        RegisterStateStatus.initial => nil,
+        RegisterStateStatus.success =>
+          Navigator.of(context).pushNamed('/auth/register/barbershop'),
+        RegisterStateStatus.error =>
+          context.showError('Erro ao registrar usuário Administrador'),
+      },
+    );
+
     return Scaffold(
       appBar: AppBar(title: const Text('Criar conta')),
       body: Form(
@@ -69,13 +88,12 @@ final class _RegisterPageState extends ConsumerState<RegisterPage> {
             const SizedBox(height: 24),
             ElevatedButton(
               onPressed: () => switch (formKey.currentState?.validate()) {
-                null || false => null,
-                _ => true,
-                // true => register(
-                //     name: nameController.text,
-                //     email: emailController.text,
-                //     password: passwordController.text,
-                //   ),
+                null || false => context.showError('Formulário inválido'),
+                true => registerVM.register(
+                    name: nameController.text,
+                    email: emailController.text,
+                    password: passwordController.text,
+                  ),
               },
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size.fromHeight(56),

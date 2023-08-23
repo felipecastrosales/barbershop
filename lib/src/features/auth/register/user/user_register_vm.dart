@@ -1,24 +1,24 @@
 import 'package:asyncstate/asyncstate.dart';
 import 'package:barbershop/src/core/fp/either.dart';
 import 'package:barbershop/src/core/providers/application_providers.dart';
-import 'package:barbershop/src/features/auth/register/register_providers.dart';
+import 'package:barbershop/src/features/auth/register/user/user_register_providers.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'register_vm.g.dart';
+part 'user_register_vm.g.dart';
 
-enum RegisterStateStatus { initial, success, error }
+enum UserRegisterStateStatus { initial, success, error }
 
 @riverpod
-class RegisterVM extends _$RegisterVM {
+class UserRegisterVM extends _$UserRegisterVM {
   @override
-  RegisterStateStatus build() => RegisterStateStatus.initial;
+  UserRegisterStateStatus build() => UserRegisterStateStatus.initial;
 
   Future<void> register({
     required String name,
     required String email,
     required String password,
   }) async {
-    final registerService = ref.watch(userRegisterServiceProvider);
+    final userRegisterService = ref.watch(userRegisterServiceADMProvider);
 
     final userData = (
       name: name,
@@ -26,14 +26,14 @@ class RegisterVM extends _$RegisterVM {
       password: password,
     );
 
-    final result = await registerService.execute(userData).asyncLoader();
+    final result = await userRegisterService.execute(userData).asyncLoader();
 
     switch (result) {
       case Success():
         ref.invalidate(getMeProvider);
-        state = RegisterStateStatus.success;
+        state = UserRegisterStateStatus.success;
       case Failure():
-        state = RegisterStateStatus.error;
+        state = UserRegisterStateStatus.error;
     }
   }
 }

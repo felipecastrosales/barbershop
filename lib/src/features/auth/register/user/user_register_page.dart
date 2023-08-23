@@ -1,19 +1,19 @@
 import 'package:barbershop/src/core/fp/nil.dart';
 import 'package:barbershop/src/core/ui/helpers/form_helper.dart';
 import 'package:barbershop/src/core/ui/helpers/messages.dart';
-import 'package:barbershop/src/features/auth/register/register_vm.dart';
+import 'package:barbershop/src/features/auth/register/user/user_register_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:validatorless/validatorless.dart';
 
-class RegisterPage extends ConsumerStatefulWidget {
-  const RegisterPage({super.key});
+class UserRegisterPage extends ConsumerStatefulWidget {
+  const UserRegisterPage({super.key});
 
   @override
-  ConsumerState<RegisterPage> createState() => _RegisterPageState();
+  ConsumerState<UserRegisterPage> createState() => _UserRegisterPageState();
 }
 
-final class _RegisterPageState extends ConsumerState<RegisterPage> {
+final class _UserRegisterPageState extends ConsumerState<UserRegisterPage> {
   final formKey = GlobalKey<FormState>();
   final nameController = TextEditingController();
   final emailController = TextEditingController();
@@ -24,21 +24,23 @@ final class _RegisterPageState extends ConsumerState<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
-    final registerVM = ref.watch(registerVMProvider.notifier);
+    final userRegisterVM = ref.watch(userRegisterVMProvider.notifier);
 
     ref.listen(
-      registerVMProvider,
+      userRegisterVMProvider,
       (_, state) => switch (state) {
-        RegisterStateStatus.initial => nil,
-        RegisterStateStatus.success =>
+        UserRegisterStateStatus.initial => nil,
+        UserRegisterStateStatus.success =>
           Navigator.of(context).pushNamed('/auth/register/barbershop'),
-        RegisterStateStatus.error =>
+        UserRegisterStateStatus.error =>
           context.showError('Erro ao registrar usuário Administrador'),
       },
     );
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Criar conta')),
+      appBar: AppBar(
+        title: const Text('Criar conta'),
+      ),
       body: Form(
         key: formKey,
         child: ListView(
@@ -89,7 +91,7 @@ final class _RegisterPageState extends ConsumerState<RegisterPage> {
             ElevatedButton(
               onPressed: () => switch (formKey.currentState?.validate()) {
                 null || false => context.showError('Formulário inválido'),
-                true => registerVM.register(
+                true => userRegisterVM.register(
                     name: nameController.text,
                     email: emailController.text,
                     password: passwordController.text,

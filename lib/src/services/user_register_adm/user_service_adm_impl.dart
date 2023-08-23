@@ -1,13 +1,12 @@
 import 'package:barbershop/src/services/user_login/user_login_service.dart';
-import 'package:barbershop/src/services/user_register/user_service.dart';
+import 'package:barbershop/src/services/user_register_adm/user_service_adm.dart';
 import 'package:barbershop/src/core/exceptions/service_exception.dart';
 import 'package:barbershop/src/core/fp/either.dart';
 import 'package:barbershop/src/core/fp/nil.dart';
 import 'package:barbershop/src/repositories/user/user_repository.dart';
 
-/// to ADM
-final class UserRegisterServiceImpl implements UserRegisterService {
-  UserRegisterServiceImpl({
+final class UserRegisterServiceADMImpl implements UserRegisterServiceADM {
+  UserRegisterServiceADMImpl({
     required UserRepository userRepository,
     required UserLoginService userService,
   })  : _userRepository = userRepository,

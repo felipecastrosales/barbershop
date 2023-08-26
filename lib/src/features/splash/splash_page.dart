@@ -1,5 +1,9 @@
+import 'dart:developer';
+
 import 'package:barbershop/src/core/constants.dart';
+import 'package:barbershop/src/core/ui/helpers/messages.dart';
 import 'package:barbershop/src/features/auth/login/login_page.dart';
+import 'package:barbershop/src/features/splash/splash_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -30,6 +34,25 @@ final class _SplashPageState extends ConsumerState<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
+    ref.listen(splashVMProvider, (_, state) {
+      state.whenOrNull(
+        error: (e, s) {
+          log('Erro ao validar login', error: e, stackTrace: s);
+          context.showError('Erro ao validar login');
+          Navigator.of(context)
+              .pushNamedAndRemoveUntil('/auth/login', (_) => false);
+        },
+        data: (data) => switch (data) {
+          SplashState.loggedADM => Navigator.of(context)
+              .pushNamedAndRemoveUntil('/home/adm', (_) => false),
+          SplashState.loggedEmployee => Navigator.of(context)
+              .pushNamedAndRemoveUntil('/home/employee', (_) => false),
+          _ => Navigator.of(context)
+              .pushNamedAndRemoveUntil('/home/login', (_) => false),
+        },
+      );
+    });
+
     return Scaffold(
       backgroundColor: Colors.black,
       body: DecoratedBox(

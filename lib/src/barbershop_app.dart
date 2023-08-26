@@ -5,6 +5,7 @@ import 'package:barbershop/src/core/ui/widgets/barbershop_loader.dart';
 import 'package:barbershop/src/features/auth/login/login_page.dart';
 import 'package:barbershop/src/features/auth/register/barbershop/barbershop_register_page.dart';
 import 'package:barbershop/src/features/auth/register/user/user_register_page.dart';
+import 'package:barbershop/src/features/home/adm/home_adm_page.dart';
 import 'package:barbershop/src/features/splash/splash_page.dart';
 import 'package:flutter/material.dart';
 
@@ -21,44 +22,16 @@ class BarbershopApp extends StatelessWidget {
           navigatorKey: BarbershopNavGlobalKey.instance.navKey,
           theme: BarbershopTheme.themeData,
           title: 'Barbershop',
+          home: const SplashPage(),
           routes: {
-            '/': (context) => const SplashPage(),
             '/auth/login': (_) => const LoginPage(),
             '/auth/register/user': (_) => const UserRegisterPage(),
             '/auth/register/barbershop': (_) => const BarbershopRegisterPage(),
-            '/barbers': (context) => const BarbersPage(),
-            '/barbers/:id': (context) => const BarberPage(),
-            '/home/adm': (_) => const Text('ADM'),
+            '/home/adm': (_) => const HomeADMPage(),
             '/home/employee': (_) => const Text('EMPLOYEE'),
           },
         );
       },
-    );
-  }
-}
-
-class BarbersPage extends StatelessWidget {
-  const BarbersPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('Barbers Page'),
-      ),
-    );
-  }
-}
-
-class BarberPage extends StatelessWidget {
-  const BarberPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('Barber Page'),
-      ),
     );
   }
 }

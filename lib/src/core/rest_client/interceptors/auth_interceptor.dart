@@ -23,7 +23,7 @@ final class AuthInterceptor extends Interceptor {
       });
     }
 
-    handler.next(options);
+    return handler.next(options);
   }
 
   @override
@@ -40,6 +40,6 @@ final class AuthInterceptor extends Interceptor {
         ).pushNamedAndRemoveUntil('/auth/login', ((route) => false));
       }
     }
-    handler.reject(err);
+    return handler.reject(err);
   }
 }

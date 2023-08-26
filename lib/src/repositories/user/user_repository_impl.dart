@@ -33,7 +33,7 @@ class UserRepositoryImpl implements UserRepository {
       if (e.response != null) {
         final Response(:statusCode) = e.response!;
         if (statusCode == HttpStatus.forbidden) {
-          log('Login ou senha invalido login', error: e, stackTrace: s);
+          log('Login ou senha inválido login', error: e, stackTrace: s);
           return Failure(const AuthUnauthorizedException());
         }
       }
@@ -69,7 +69,7 @@ class UserRepositoryImpl implements UserRepository {
         '/users',
         data: {
           'name': userData.name,
-          'email': userData.password,
+          'email': userData.email,
           'password': userData.password,
           'profile': 'ADM',
         },

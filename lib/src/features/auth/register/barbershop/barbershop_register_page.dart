@@ -1,7 +1,10 @@
+import 'package:barbershop/src/core/fp/nil.dart';
 import 'package:barbershop/src/core/ui/helpers/form_helper.dart';
 import 'package:barbershop/src/core/ui/helpers/messages.dart';
 import 'package:barbershop/src/core/ui/widgets/hours_panel.dart';
 import 'package:barbershop/src/core/ui/widgets/weekdays_panel.dart';
+import 'package:barbershop/src/features/auth/register/barbershop/barbershop_register_status.dart';
+import 'package:barbershop/src/features/auth/register/barbershop/barbershop_register_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:validatorless/validatorless.dart';
@@ -27,16 +30,25 @@ final class _BarbershopRegisterPageState
     super.dispose();
   }
 
-  void addOrRemoveOpeningDays(String a) {
-    print('');
-  }
-
-  void addOrRemoveOpeningHours(int a) {
-    print('');
-  }
-
   @override
   Widget build(BuildContext context) {
+    final BarbershopRegisterVM(
+      :addOrRemoveOpeningDays,
+      :addOrRemoveOpeningHours,
+      :register,
+    ) = ref.watch(barbershopRegisterVMProvider.notifier);
+
+    ref.listen(
+      barbershopRegisterVMProvider,
+      (_, state) => switch (state.status) {
+        BarbershopRegisterStateStatus.initial => nil,
+        BarbershopRegisterStateStatus.error =>
+          context.showError('Erro ao cadastrar estabelecimento'),
+        BarbershopRegisterStateStatus.success => Navigator.of(context)
+            .pushNamedAndRemoveUntil('/home/adm', (_) => false),
+      },
+    );
+
     return Scaffold(
       appBar: AppBar(title: const Text('Cadastrar estabelecimento')),
       body: Form(
@@ -75,8 +87,10 @@ final class _BarbershopRegisterPageState
             ElevatedButton(
               onPressed: () => switch (formKey.currentState?.validate()) {
                 false || null => context.showError('Formulário inválido'),
-                // true => register(name: nameController.text, email: emailController.text),
-                true => null,
+                true => register(
+                    name: nameController.text,
+                    email: emailController.text,
+                  ),
               },
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size.fromHeight(56),

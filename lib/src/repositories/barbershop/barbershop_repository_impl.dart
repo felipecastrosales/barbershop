@@ -41,7 +41,7 @@ class BarbershopRepositoryImpl implements BarbershopRepository {
       String email,
       String name,
       List<String> openingDays,
-      List<String> openingHours
+      List<int> openingHours,
     }) data,
   ) async {
     try {

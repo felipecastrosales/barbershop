@@ -13,8 +13,8 @@ final class BarbershopModel {
         'id': final int id,
         'name': final String name,
         'email': final String email,
-        'opening_days': final List<String?> openDays,
-        'opening_hours': final List<int?> openHours,
+        'opening_days': final List openDays,
+        'opening_hours': final List openHours,
       } =>
         BarbershopModel(
           id: id,

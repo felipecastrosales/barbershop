@@ -1,13 +1,13 @@
 import 'dart:developer';
 
 import 'package:barbershop/src/core/constants.dart';
+import 'package:barbershop/src/core/providers/application_providers.dart';
 import 'package:barbershop/src/core/ui/barbershop_icons.dart';
 import 'package:barbershop/src/core/ui/widgets/barbershop_loader.dart';
 import 'package:barbershop/src/features/home/adm/home_adm_state.dart';
 import 'package:barbershop/src/features/home/adm/home_adm_vm.dart';
 import 'package:barbershop/src/features/home/adm/widgets/home_employee_tile.dart';
 import 'package:barbershop/src/features/home/widgets/home_header.dart';
-import 'package:barbershop/src/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -20,7 +20,11 @@ class HomeADMPage extends ConsumerWidget {
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () async {
+          await Navigator.of(context).pushNamed('/employee/register');
+          ref.invalidate(getMeProvider);
+          ref.invalidate(homeADMVMProvider);
+        },
         shape: const CircleBorder(),
         backgroundColor: ColorConstants.brown,
         child: const CircleAvatar(

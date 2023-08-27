@@ -32,8 +32,8 @@ final class UserModelADM extends UserModel {
           name: name,
           email: email,
           avatar: json['avatar'] as String?,
-          workDays: (json['workDays'] as List<String?>?)?.cast<String>(),
-          workHours: (json['workHours'] as List<int?>?)?.cast<int>(),
+          workDays: (json['work_days'] as List<String?>?)?.cast<String>(),
+          workHours: (json['work_hours'] as List<int?>?)?.cast<int>(),
         ),
       _ => throw FormatException('Invalid UserModelAdm JSON: $json'),
     };
@@ -59,9 +59,9 @@ class UserModelEmployee extends UserModel {
         'id': final int id,
         'name': final String name,
         'email': final String email,
-        'barbershopId': final int barbershopId,
-        'workDays': final List<String> workDays,
-        'workHours': final List<int> workHours,
+        'barbershop_id': final int barbershopId,
+        'work_days': final List<String> workDays,
+        'work_hours': final List<int> workHours,
       } =>
         UserModelEmployee(
           id: id,

@@ -11,14 +11,14 @@ sealed class BarbershopTheme {
     useMaterial3: true,
     fontFamily: FontConstants.fontFamily,
     inputDecorationTheme: InputDecorationTheme(
-      labelStyle: const TextStyle(color: ColorConstants.grey),
       filled: true,
       fillColor: Colors.white,
+      border: _defaultInputBorder,
+      labelStyle: const TextStyle(color: ColorConstants.grey),
+      focusedBorder: _defaultInputBorder,
       errorBorder: _defaultInputBorder.copyWith(
         borderSide: const BorderSide(color: ColorConstants.red),
       ),
-      focusedBorder: _defaultInputBorder,
-      border: _defaultInputBorder,
     ),
     appBarTheme: const AppBarTheme(
       iconTheme: IconThemeData(color: ColorConstants.brown),
@@ -35,9 +35,14 @@ sealed class BarbershopTheme {
       style: ElevatedButton.styleFrom(
         backgroundColor: ColorConstants.brown,
         foregroundColor: Colors.white,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(8)),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      ),
+    ),
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        foregroundColor: ColorConstants.brown,
+        side: const BorderSide(color: ColorConstants.brown, width: 1),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
     ),
   );

@@ -26,7 +26,7 @@ class UserRegisterVM extends _$UserRegisterVM {
       password: password,
     );
 
-    final result = await userRegisterService.execute(userData).asyncLoader();
+    final result = await userRegisterService.execute(userData);
 
     switch (result) {
       case Success():

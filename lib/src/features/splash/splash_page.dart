@@ -48,7 +48,7 @@ final class _SplashPageState extends ConsumerState<SplashPage> {
           SplashState.loggedEmployee => Navigator.of(context)
               .pushNamedAndRemoveUntil('/home/employee', (_) => false),
           _ => Navigator.of(context)
-              .pushNamedAndRemoveUntil('/home/login', (_) => false),
+              .pushNamedAndRemoveUntil('/auth/login', (_) => false),
         },
       );
     });

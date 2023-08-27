@@ -52,4 +52,3 @@ class _HomeADMPageState extends ConsumerState<HomeADMPage> {
     );
   }
 }
-// {email: felipe@gmail.com, password: 123456}

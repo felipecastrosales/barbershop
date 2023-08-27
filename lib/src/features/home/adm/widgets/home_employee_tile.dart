@@ -32,7 +32,7 @@ class HomeEmployeeTile extends StatelessWidget {
               image: DecorationImage(
                 fit: BoxFit.cover,
                 image: switch (employee.avatar) {
-                  final avatar => NetworkImage(avatar ?? ''),
+                  final avatar when avatar != null => NetworkImage(avatar),
                   _ => const AssetImage(ImageConstants.avatar),
                 } as ImageProvider<Object>,
               ),

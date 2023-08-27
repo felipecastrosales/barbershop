@@ -84,4 +84,28 @@ class UserRepositoryImpl implements UserRepository {
       );
     }
   }
+
+  @override
+  Future<Either<RepositoryException, List<UserModel>>> getEmployees(
+    int barbershopId,
+  ) async {
+    try {
+      final Response(:List data) = await _restClient.auth.get(
+        '/users',
+        queryParameters: {
+          'barbershop_id': barbershopId,
+        },
+      );
+      final employees = data.map((e) => UserModelEmployee.fromMap(e)).toList();
+      return Success(employees);
+    } on DioException catch (e, s) {
+      const errorMessage = 'Erro ao buscar colaboradores';
+      log(errorMessage, error: e, stackTrace: s);
+      return Failure(const RepositoryException(message: errorMessage));
+    } on ArgumentError catch (e, s) {
+      const errorMessage = 'Erro ao buscar colaboradores (Invalid JSON)';
+      log(errorMessage, error: e, stackTrace: s);
+      return Failure(const RepositoryException(message: errorMessage));
+    }
+  }
 }

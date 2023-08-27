@@ -1,19 +1,39 @@
 import 'package:barbershop/src/core/constants.dart';
 import 'package:flutter/material.dart';
 
-class HoursPanel extends StatelessWidget {
+class HoursPanel extends StatefulWidget {
   const HoursPanel({
     super.key,
+    this.enabledTimes,
     required this.startTime,
     required this.endTime,
     required this.onTimePressed,
-  });
+  }) : singleSelection = false;
 
+  const HoursPanel.singleSelection({
+    super.key,
+    this.enabledTimes,
+    required this.startTime,
+    required this.endTime,
+    required this.onTimePressed,
+  }) : singleSelection = true;
+
+  final List<int>? enabledTimes;
   final int startTime, endTime;
   final ValueChanged<int> onTimePressed;
+  final bool singleSelection;
+
+  @override
+  State<HoursPanel> createState() => _HoursPanelState();
+}
+
+class _HoursPanelState extends State<HoursPanel> {
+  int? lastSelection;
 
   @override
   Widget build(BuildContext context) {
+    final HoursPanel(:singleSelection) = widget;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -29,11 +49,25 @@ class HoursPanel extends StatelessWidget {
           spacing: 8,
           runSpacing: 16,
           children: [
-            for (var item = startTime; item <= endTime; item++)
+            for (int i = widget.startTime; i <= widget.endTime; i++)
               TimeButton(
-                value: item,
-                label: '${item.toString().padLeft(2, '0')}:00',
-                onTimePressed: onTimePressed,
+                enabledTimes: widget.enabledTimes,
+                label: '${i.toString().padLeft(2, '0')}:00',
+                value: i,
+                timeSelected: lastSelection,
+                singleSelection: widget.singleSelection,
+                onPressed: (timeSelected) {
+                  setState(() {
+                    if (singleSelection) {
+                      if (lastSelection == timeSelected) {
+                        lastSelection = null;
+                      } else {
+                        lastSelection = timeSelected;
+                      }
+                    }
+                  });
+                  widget.onTimePressed(timeSelected);
+                },
               ),
           ],
         ),
@@ -45,43 +79,81 @@ class HoursPanel extends StatelessWidget {
 class TimeButton extends StatefulWidget {
   const TimeButton({
     super.key,
+    this.enabledTimes,
     required this.label,
     required this.value,
-    required this.onTimePressed,
+    required this.onPressed,
+    required this.singleSelection,
+    required this.timeSelected,
   });
 
+  final List<int>? enabledTimes;
   final String label;
   final int value;
-  final ValueChanged<int> onTimePressed;
+  final ValueChanged<int> onPressed;
+  final bool singleSelection;
+  final int? timeSelected;
 
   @override
-  State<TimeButton> createState() => TimeButtonState();
+  State<TimeButton> createState() => _TimeButtonState();
 }
 
-class TimeButtonState extends State<TimeButton> {
-  var _selected = false;
+class _TimeButtonState extends State<TimeButton> {
+  var selected = false;
 
   @override
   Widget build(BuildContext context) {
-    final textColor = _selected ? Colors.white : ColorConstants.grey;
+    final TimeButton(
+      :singleSelection,
+      :timeSelected,
+      :value,
+      :label,
+      :enabledTimes,
+      :onPressed,
+    ) = widget;
+
+    if (singleSelection) {
+      if (timeSelected != null) {
+        if (timeSelected == value) {
+          selected = true;
+        } else {
+          selected = false;
+        }
+      }
+    }
+
+    final textColor = selected ? Colors.white : ColorConstants.grey;
+    var buttonColor = selected ? ColorConstants.brown : Colors.white;
     final buttonBorderColor =
-        _selected ? ColorConstants.brown : ColorConstants.grey;
-    final buttonColor = _selected ? ColorConstants.brown : Colors.white;
+        selected ? ColorConstants.brown : ColorConstants.grey;
+
+    final disableTime = enabledTimes != null && !enabledTimes.contains(value);
+
+    if (disableTime) {
+      buttonColor = Colors.grey[400]!;
+    }
 
     return InkWell(
-      onTap: _onTimePressed,
-      borderRadius: const BorderRadius.all(Radius.circular(8)),
+      borderRadius: BorderRadius.circular(8),
+      onTap: disableTime
+          ? null
+          : () {
+              setState(() {
+                selected = !selected;
+                onPressed(value);
+              });
+            },
       child: Container(
-        decoration: BoxDecoration(
-          color: buttonColor,
-          border: Border.fromBorderSide(BorderSide(color: buttonBorderColor)),
-          borderRadius: const BorderRadius.all(Radius.circular(8)),
-        ),
         width: 64,
         height: 36,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          color: buttonColor,
+          border: Border.all(color: buttonBorderColor),
+        ),
         child: Center(
           child: Text(
-            widget.label,
+            label,
             style: TextStyle(
               color: textColor,
               fontSize: 12,
@@ -91,10 +163,5 @@ class TimeButtonState extends State<TimeButton> {
         ),
       ),
     );
-  }
-
-  void _onTimePressed() {
-    widget.onTimePressed(widget.value);
-    setState(() => _selected = !_selected);
   }
 }

@@ -5,9 +5,11 @@ class WeekdaysPanel extends StatelessWidget {
   const WeekdaysPanel({
     super.key,
     required this.onDayPressed,
+    this.enabledDays,
   });
 
   final ValueChanged<String> onDayPressed;
+  final List<String>? enabledDays;
 
   @override
   Widget build(BuildContext context) {
@@ -26,13 +28,41 @@ class WeekdaysPanel extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                ButtonDay(label: 'Seg', onDayPressed: onDayPressed),
-                ButtonDay(label: 'Ter', onDayPressed: onDayPressed),
-                ButtonDay(label: 'Qua', onDayPressed: onDayPressed),
-                ButtonDay(label: 'Qui', onDayPressed: onDayPressed),
-                ButtonDay(label: 'Sex', onDayPressed: onDayPressed),
-                ButtonDay(label: 'Sab', onDayPressed: onDayPressed),
-                ButtonDay(label: 'Dom', onDayPressed: onDayPressed),
+                ButtonDay(
+                  label: 'Seg',
+                  enabledDays: enabledDays,
+                  onDayPressed: onDayPressed,
+                ),
+                ButtonDay(
+                  label: 'Ter',
+                  enabledDays: enabledDays,
+                  onDayPressed: onDayPressed,
+                ),
+                ButtonDay(
+                  label: 'Qua',
+                  enabledDays: enabledDays,
+                  onDayPressed: onDayPressed,
+                ),
+                ButtonDay(
+                  label: 'Qui',
+                  enabledDays: enabledDays,
+                  onDayPressed: onDayPressed,
+                ),
+                ButtonDay(
+                  label: 'Sex',
+                  enabledDays: enabledDays,
+                  onDayPressed: onDayPressed,
+                ),
+                ButtonDay(
+                  label: 'Sab',
+                  enabledDays: enabledDays,
+                  onDayPressed: onDayPressed,
+                ),
+                ButtonDay(
+                  label: 'Dom',
+                  enabledDays: enabledDays,
+                  onDayPressed: onDayPressed,
+                ),
               ],
             ),
           ),
@@ -47,10 +77,12 @@ class ButtonDay extends StatefulWidget {
     super.key,
     required this.label,
     required this.onDayPressed,
+    this.enabledDays,
   });
 
   final String label;
   final ValueChanged<String> onDayPressed;
+  final List<String>? enabledDays;
 
   @override
   State<ButtonDay> createState() => ButtonDayState();
@@ -62,19 +94,34 @@ class ButtonDayState extends State<ButtonDay> {
   @override
   Widget build(BuildContext context) {
     final textColor = selected ? Colors.white : ColorConstants.grey;
-    final buttonColor = selected ? ColorConstants.brown : Colors.white;
+    var buttonColor = selected ? ColorConstants.brown : Colors.white;
     final buttonBorderColor =
         selected ? ColorConstants.brown : ColorConstants.grey;
 
+    final ButtonDay(:enabledDays, :label) = widget;
+
+    final disableDay = enabledDays != null && !enabledDays.contains(label);
+
+    if (disableDay) {
+      buttonColor = Colors.grey[400]!;
+    }
+
     void onDayPressed() {
-      widget.onDayPressed(widget.label);
+      widget.onDayPressed(label);
       setState(() => selected = !selected);
     }
 
     return Padding(
       padding: const EdgeInsets.all(5),
       child: InkWell(
-        onTap: onDayPressed,
+        onTap: disableDay
+            ? null
+            : () {
+                widget.onDayPressed(label);
+                setState(() {
+                  selected = !selected;
+                });
+              },
         borderRadius: const BorderRadius.all(Radius.circular(8)),
         child: Container(
           width: 40,
@@ -86,7 +133,7 @@ class ButtonDayState extends State<ButtonDay> {
           ),
           child: Center(
             child: Text(
-              widget.label,
+              label,
               style: TextStyle(
                 color: textColor,
                 fontSize: 12,

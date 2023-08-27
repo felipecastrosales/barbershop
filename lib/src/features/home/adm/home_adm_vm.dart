@@ -2,6 +2,7 @@ import 'package:asyncstate/asyncstate.dart';
 import 'package:barbershop/src/core/fp/either.dart';
 import 'package:barbershop/src/core/providers/application_providers.dart';
 import 'package:barbershop/src/models/barbershop_model.dart';
+import 'package:barbershop/src/models/user_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'package:barbershop/src/features/home/adm/home_adm_state.dart';
@@ -15,10 +16,18 @@ class HomeADMVM extends _$HomeADMVM {
     final repository = ref.read(userRepositoryProvider);
     final BarbershopModel(id: barbershopId) =
         await ref.read(getMyBarbershopProvider.future);
+    final me = await ref.watch(getMeProvider.future);
+
     final employeesResult = await repository.getEmployees(barbershopId);
 
     switch (employeesResult) {
-      case Success(value: final employees):
+      case Success(value: final employeesData):
+        // _? -> different of null
+        final employees = <UserModel>[];
+        if (me case UserModelADM(workDays: _?, workHours: _?)) {
+          employees.add(me);
+        }
+        employees.addAll(employeesData);
         return HomeADMState(
           status: HomeADMStateStatus.loaded,
           employees: employees,

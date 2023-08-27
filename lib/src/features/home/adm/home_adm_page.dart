@@ -1,21 +1,23 @@
+import 'dart:developer';
+
 import 'package:barbershop/src/core/constants.dart';
 import 'package:barbershop/src/core/ui/barbershop_icons.dart';
+import 'package:barbershop/src/core/ui/widgets/barbershop_loader.dart';
+import 'package:barbershop/src/features/home/adm/home_adm_state.dart';
+import 'package:barbershop/src/features/home/adm/home_adm_vm.dart';
 import 'package:barbershop/src/features/home/adm/widgets/home_employee_tile.dart';
 import 'package:barbershop/src/features/home/widgets/home_header.dart';
 import 'package:barbershop/src/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomeADMPage extends ConsumerStatefulWidget {
+class HomeADMPage extends ConsumerWidget {
   const HomeADMPage({super.key});
 
   @override
-  ConsumerState<HomeADMPage> createState() => _HomeADMPageState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final homeState = ref.watch(homeADMVMProvider);
 
-class _HomeADMPageState extends ConsumerState<HomeADMPage> {
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
@@ -30,24 +32,43 @@ class _HomeADMPageState extends ConsumerState<HomeADMPage> {
           ),
         ),
       ),
-      body: CustomScrollView(
-        slivers: [
-          const SliverToBoxAdapter(
-            child: HomeHeader(),
-          ),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              childCount: 10,
-              (context, index) => HomeEmployeeTile(
-                employee: UserModelADM(
-                  id: 7,
-                  name: 'Felipe Sales',
-                  email: 'soufeliposales@gmail.com',
+      body: homeState.when(
+        loading: () => const BarbershopLoader(),
+        error: (e, s) {
+          log('Erro ao buscar colaboradores', error: e, stackTrace: s);
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  'Erro ao carregar página.',
+                  style: TextStyle(color: Colors.black),
+                ),
+                TextButton(
+                  onPressed: () {
+                    ref.read(homeADMVMProvider.notifier).logout;
+                  },
+                  child: const Text('Deslogar'),
+                ),
+              ],
+            ),
+          );
+        },
+        data: (HomeADMState data) => CustomScrollView(
+          slivers: [
+            const SliverToBoxAdapter(
+              child: HomeHeader(),
+            ),
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                childCount: data.employees.length,
+                (context, index) => HomeEmployeeTile(
+                  employee: data.employees[index],
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

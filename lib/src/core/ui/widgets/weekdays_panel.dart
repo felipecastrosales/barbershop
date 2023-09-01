@@ -106,11 +106,6 @@ class ButtonDayState extends State<ButtonDay> {
       buttonColor = Colors.grey[400]!;
     }
 
-    void onDayPressed() {
-      widget.onDayPressed(label);
-      setState(() => selected = !selected);
-    }
-
     return Padding(
       padding: const EdgeInsets.all(5),
       child: InkWell(

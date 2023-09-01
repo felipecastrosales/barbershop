@@ -19,4 +19,19 @@ abstract interface class UserRepository {
   Future<Either<RepositoryException, List<UserModel>>> getEmployees(
     int barbershopId,
   );
+
+  Future<Either<RepositoryException, Nil>> registerADMAsEmployee(
+    ({List<String> workDays, List<int> workHours}) userModel,
+  );
+
+  Future<Either<RepositoryException, Nil>> registerEmployee(
+    ({
+      int barbershopId,
+      String name,
+      String email,
+      String password,
+      List<String> workDays,
+      List<int> workHours,
+    }) userModel,
+  );
 }

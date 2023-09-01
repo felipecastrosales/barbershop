@@ -7,6 +7,7 @@ import 'package:barbershop/src/core/ui/widgets/avatar_widget.dart';
 import 'package:barbershop/src/core/ui/widgets/barbershop_loader.dart';
 import 'package:barbershop/src/core/ui/widgets/hours_panel.dart';
 import 'package:barbershop/src/core/ui/widgets/weekdays_panel.dart';
+import 'package:barbershop/src/features/employee/register/employee_register_state.dart';
 import 'package:barbershop/src/features/employee/register/employee_register_vm.dart';
 import 'package:barbershop/src/models/barbershop_model.dart';
 import 'package:flutter/material.dart';
@@ -39,8 +40,22 @@ class _EmployeeRegisterPageState extends ConsumerState<EmployeeRegisterPage> {
   @override
   Widget build(BuildContext context) {
     final employeeRegisterVM = ref.watch(employeeRegisterVMProvider.notifier);
-
     final barbershopAsyncValue = ref.watch(getMyBarbershopProvider);
+
+    ref.listen(
+      employeeRegisterVMProvider.select((state) => state.status),
+      (_, status) {
+        switch (status) {
+          case EmployeeRegisterStateStatus.initial:
+            break;
+          case EmployeeRegisterStateStatus.success:
+            context.showSuccess('Colaborador registrado com sucesso');
+            Navigator.of(context).pop();
+          case EmployeeRegisterStateStatus.error:
+            context.showError('Erro ao registar colaborador');
+        }
+      },
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -167,14 +182,41 @@ class _EmployeeRegisterPageState extends ConsumerState<EmployeeRegisterPage> {
                             case false || null:
                               context.showError('Existem campos inválidos');
                             case true:
-                            // final name = nameController.text;
-                            // final email = emailController.text;
-                            // final password = passwordController.text;
-                            // employeeRegisterVm.register(
-                            //   name: name,
-                            //   email: email,
-                            //   password: password,
-                            // );
+                              // final EmployeeRegisterState(
+                              //   :workDays,
+                              //   :workHours
+                              // ) = ref.watch(employeeRegisterVMProvider);
+
+                              // if (workDays.isEmpty || workHours.isEmpty) {
+                              //   context.showError(
+                              //     'Selecione os dias da semana e horário de atendimento',
+                              //   );
+                              //   return;
+                              // }
+
+                              // employeeRegisterVM.register(
+                              //   name: nameController.text,
+                              //   email: emailController.text,
+                              //   password: passwordController.text,
+                              // );
+
+                              final EmployeeRegisterState(
+                                workDays: List(isEmpty: hasWorkDays),
+                                workHours: List(isEmpty: hasWorkHours),
+                              ) = ref.watch(employeeRegisterVMProvider);
+
+                              if (hasWorkDays || hasWorkHours) {
+                                context.showError(
+                                  'Selecione os dias da semana e horário de atendimento',
+                                );
+                                return;
+                              }
+
+                              employeeRegisterVM.register(
+                                name: nameController.text,
+                                email: emailController.text,
+                                password: passwordController.text,
+                              );
                           }
                         },
                         child: const Text('CADASTRAR COLABORADOR'),

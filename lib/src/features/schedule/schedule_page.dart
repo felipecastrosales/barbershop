@@ -1,7 +1,10 @@
 import 'package:barbershop/src/core/ui/helpers/form_helper.dart';
 import 'package:barbershop/src/core/ui/helpers/messages.dart';
 import 'package:barbershop/src/core/ui/widgets/avatar_widget.dart';
+import 'package:barbershop/src/core/ui/widgets/hours_panel.dart';
+import 'package:barbershop/src/features/schedule/schedule_vm.dart';
 import 'package:barbershop/src/features/schedule/widgets/schedule_calendar.dart';
+import 'package:barbershop/src/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -30,6 +33,8 @@ class _SchedulePageState extends ConsumerState<SchedulePage> {
 
   @override
   Widget build(BuildContext context) {
+    final scheduleVM = ref.watch(scheduleVMProvider.notifier);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Agendar Cliente'),
@@ -100,6 +105,7 @@ class _SchedulePageState extends ConsumerState<SchedulePage> {
                           onOkPressed: (DateTime value) {
                             setState(() {
                               dateController.text = dateFormat.format(value);
+                              scheduleVM.dateSelect(value);
                               showCalendar = false;
                             });
                           },
@@ -108,6 +114,12 @@ class _SchedulePageState extends ConsumerState<SchedulePage> {
                     ),
                   ),
                   const SizedBox(height: 24),
+                  HoursPanel.singleSelection(
+                    startTime: 6,
+                    endTime: 23,
+                    onTimePressed: scheduleVM.timeSelect,
+                    enabledTimes: const [],
+                  ),
                   const SizedBox(height: 24),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -118,6 +130,24 @@ class _SchedulePageState extends ConsumerState<SchedulePage> {
                         case null || false:
                           context.showError('Dados incompletos');
                         case true:
+                          final hasHourSelected = ref.watch(
+                            scheduleVMProvider
+                                .select((state) => state.scheduleTime != null),
+                          );
+                          if (hasHourSelected) {
+                            scheduleVM.register(
+                              user: UserModelADM(
+                                id: 0,
+                                name: '',
+                                email: '',
+                              ),
+                              clientName: clientController.text,
+                            );
+                          } else {
+                            context.showError(
+                              'Selecione um horário de atendimento',
+                            );
+                          }
                       }
                     },
                     child: const Text('AGENDAR'),

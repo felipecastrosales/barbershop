@@ -98,7 +98,7 @@ class _SchedulePageState extends ConsumerState<SchedulePage> {
                   const SizedBox(height: 10),
                   TextFormField(
                     controller: dateController,
-                    validator: Validatorless.required('Data é obrigatório'),
+                    validator: Validatorless.required('A data é obrigatória'),
                     readOnly: true,
                     onTap: () {
                       setState(() {
@@ -125,7 +125,7 @@ class _SchedulePageState extends ConsumerState<SchedulePage> {
                       children: [
                         const SizedBox(height: 24),
                         ScheduleCalendar(
-                          workDays: const ['seg', 'qua', 'qui'],
+                          workDays: employeeData.workDays,
                           cancelPressed: () {
                             setState(() {
                               showCalendar = false;

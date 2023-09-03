@@ -11,6 +11,7 @@ dependencies:
   dio: ^5.3.2
   flutter:
     sdk: flutter
+  syncfusion_flutter_calendar: ^22.2.11
   flutter_localizations:
     sdk: flutter
   flutter_riverpod: ^2.3.6

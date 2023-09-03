@@ -21,6 +21,7 @@ class SchedulePage extends ConsumerStatefulWidget {
 class _SchedulePageState extends ConsumerState<SchedulePage> {
   var dateFormat = DateFormat('dd/MM/yyyy');
   var showCalendar = false;
+
   final formKey = GlobalKey<FormState>();
   final clientController = TextEditingController();
   final dateController = TextEditingController();

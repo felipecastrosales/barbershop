@@ -36,6 +36,7 @@ class HomeHeader extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          SizedBox(height: MediaQuery.maybeViewPaddingOf(context)?.top),
           barberShop.maybeWhen(
             orElse: () => const Center(
               child: BarbershopLoader(),
@@ -49,8 +50,9 @@ class HomeHeader extends ConsumerWidget {
                 const SizedBox(width: 16),
                 Flexible(
                   child: Text(
-                    barbershop.name,
+                    '${barbershop.name} asdsadasdasdasdadadasdsdasdasdasdasd',
                     overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 14,
@@ -59,17 +61,16 @@ class HomeHeader extends ConsumerWidget {
                   ),
                 ),
                 const SizedBox(width: 16),
-                const Expanded(
-                  child: Text(
-                    'Editar',
-                    style: TextStyle(
-                      color: ColorConstants.brown,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
-                    ),
+                const Text(
+                  'Editar',
+                  style: TextStyle(
+                    color: ColorConstants.brown,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
                 IconButton(
+                  alignment: Alignment.centerRight,
                   onPressed: () {
                     ref.read(homeADMVMProvider.notifier).logout();
                   },
@@ -82,9 +83,7 @@ class HomeHeader extends ConsumerWidget {
               ],
             ),
           ),
-          const SizedBox(
-            height: 24,
-          ),
+          const SizedBox(height: 24),
           const Text(
             'Bem-vindo',
             style: TextStyle(

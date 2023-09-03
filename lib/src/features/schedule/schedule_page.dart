@@ -2,6 +2,7 @@ import 'package:barbershop/src/core/ui/helpers/form_helper.dart';
 import 'package:barbershop/src/core/ui/helpers/messages.dart';
 import 'package:barbershop/src/core/ui/widgets/avatar_widget.dart';
 import 'package:barbershop/src/core/ui/widgets/hours_panel.dart';
+import 'package:barbershop/src/features/schedule/schedule_state.dart';
 import 'package:barbershop/src/features/schedule/schedule_vm.dart';
 import 'package:barbershop/src/features/schedule/widgets/schedule_calendar.dart';
 import 'package:barbershop/src/models/user_model.dart';
@@ -33,7 +34,34 @@ class _SchedulePageState extends ConsumerState<SchedulePage> {
 
   @override
   Widget build(BuildContext context) {
+    final userModel = ModalRoute.of(context)?.settings.arguments as UserModel;
     final scheduleVM = ref.watch(scheduleVMProvider.notifier);
+
+    final employeeData = switch (userModel) {
+      UserModelADM(:final workDays, :final workHours) => (
+          workDays: workDays!,
+          workHours: workHours!,
+        ),
+      UserModelEmployee(:final workDays, :final workHours) => (
+          workDays: workDays,
+          workHours: workHours,
+        ),
+    };
+
+    ref.listen(
+      scheduleVMProvider.select((state) => state.status),
+      (_, status) {
+        switch (status) {
+          case ScheduleStateStatus.initial:
+            break;
+          case ScheduleStateStatus.success:
+            context.showSuccess('Cliente agendado com sucesso');
+            Navigator.of(context).pop();
+          case ScheduleStateStatus.error:
+            context.showError('Erro ao registrar agendamento');
+        }
+      },
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -49,9 +77,9 @@ class _SchedulePageState extends ConsumerState<SchedulePage> {
                 children: [
                   const AvatarWidget.withoutButton(),
                   const SizedBox(height: 32),
-                  const Text(
-                    '',
-                    style: TextStyle(
+                  Text(
+                    userModel.name,
+                    style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
                     ),
@@ -118,7 +146,7 @@ class _SchedulePageState extends ConsumerState<SchedulePage> {
                     startTime: 6,
                     endTime: 23,
                     onTimePressed: scheduleVM.timeSelect,
-                    enabledTimes: const [],
+                    enabledTimes: employeeData.workHours,
                   ),
                   const SizedBox(height: 24),
                   ElevatedButton(
@@ -136,11 +164,7 @@ class _SchedulePageState extends ConsumerState<SchedulePage> {
                           );
                           if (hasHourSelected) {
                             scheduleVM.register(
-                              user: UserModelADM(
-                                id: 0,
-                                name: '',
-                                email: '',
-                              ),
+                              user: userModel,
                               clientName: clientController.text,
                             );
                           } else {

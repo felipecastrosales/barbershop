@@ -55,7 +55,7 @@ class _HoursPanelState extends State<HoursPanel> {
                 label: '${i.toString().padLeft(2, '0')}:00',
                 value: i,
                 timeSelected: lastSelection,
-                singleSelection: widget.singleSelection,
+                singleSelection: singleSelection,
                 onPressed: (timeSelected) {
                   setState(() {
                     if (singleSelection) {

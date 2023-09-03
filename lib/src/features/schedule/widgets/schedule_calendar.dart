@@ -21,9 +21,9 @@ class ScheduleCalendar extends StatefulWidget {
 
 class _ScheduleCalendarState extends State<ScheduleCalendar> {
   DateTime? selectedDay;
-  late final List<int> weekDaysEnable;
+  late final List<int> weekDaysEnabled;
 
-  int convertWeekDay(String weekday) => switch (weekday.toLowerCase()) {
+  int convertWeekDay(String weekDay) => switch (weekDay.toLowerCase()) {
         'seg' => DateTime.monday,
         'ter' => DateTime.tuesday,
         'qua' => DateTime.wednesday,
@@ -37,11 +37,13 @@ class _ScheduleCalendarState extends State<ScheduleCalendar> {
   @override
   void initState() {
     super.initState();
-    weekDaysEnable = widget.workDays.map(convertWeekDay).toList();
+    weekDaysEnabled = widget.workDays.map(convertWeekDay).toList();
   }
 
   @override
   Widget build(BuildContext context) {
+    final ScheduleCalendar(:cancelPressed, :onOkPressed) = widget;
+
     return Container(
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
@@ -59,17 +61,13 @@ class _ScheduleCalendarState extends State<ScheduleCalendar> {
             calendarFormat: CalendarFormat.month,
             locale: 'pt_BR',
             availableCalendarFormats: const {CalendarFormat.month: 'Month'},
-            enabledDayPredicate: (day) {
-              return weekDaysEnable.contains(day.weekday);
-            },
+            enabledDayPredicate: (day) => weekDaysEnabled.contains(day.weekday),
             onDaySelected: (selectedDay, focusedDay) {
               setState(() {
                 this.selectedDay = selectedDay;
               });
             },
-            selectedDayPredicate: (day) {
-              return isSameDay(selectedDay, day);
-            },
+            selectedDayPredicate: (day) => isSameDay(selectedDay, day),
             calendarStyle: CalendarStyle(
               selectedDecoration: const BoxDecoration(
                 color: ColorConstants.brown,
@@ -85,7 +83,7 @@ class _ScheduleCalendarState extends State<ScheduleCalendar> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               TextButton(
-                onPressed: widget.cancelPressed,
+                onPressed: cancelPressed,
                 child: const Text(
                   'Cancelar',
                   style: TextStyle(
@@ -101,7 +99,7 @@ class _ScheduleCalendarState extends State<ScheduleCalendar> {
                     context.showError('Por favor selecione um dia');
                     return;
                   }
-                  widget.onOkPressed(selectedDay!);
+                  onOkPressed(selectedDay!);
                 },
                 child: const Text(
                   'OK',

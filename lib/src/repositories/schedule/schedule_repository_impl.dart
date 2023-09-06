@@ -51,8 +51,14 @@ class ScheduleRepositoryImpl implements ScheduleRepository {
     ({DateTime date, int userId}) filter,
   ) async {
     try {
-      await _restClient.auth.get('/');
-      return Success([]);
+      final Response(:List data) = await _restClient.auth.get(
+        '/schedules',
+        queryParameters: {
+          'user_id': filter.userId,
+          'date': filter.date.toIso8601String(),
+        },
+      );
+      return Success(data.map((s) => ScheduleModel.fromMap(s)).toList());
     } on DioException catch (e, s) {
       const errorMessage = 'Erro ao buscar agendamento de uma data';
       log(errorMessage, error: e, stackTrace: s);

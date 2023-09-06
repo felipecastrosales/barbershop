@@ -22,7 +22,7 @@ class LoginVM extends _$LoginVM {
       password: password,
     );
 
-    switch (    result) {
+    switch (result) {
       case Success():
         ref.invalidate(getMeProvider);
         ref.invalidate(getMyBarbershopProvider); //cascade

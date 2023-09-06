@@ -39,7 +39,7 @@ class HomeADMPage extends ConsumerWidget {
       body: homeState.when(
         loading: () => const BarbershopLoader(),
         error: (e, s) {
-          log('Erro ao buscar colaboradores', error: e, stackTrace: s);
+          log('UI Erro ao buscar colaboradores', error: e, stackTrace: s);
           return Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -50,7 +50,7 @@ class HomeADMPage extends ConsumerWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    ref.read(homeADMVMProvider.notifier).logout;
+                    ref.read(homeADMVMProvider.notifier).logout();
                   },
                   child: const Text('Deslogar'),
                 ),

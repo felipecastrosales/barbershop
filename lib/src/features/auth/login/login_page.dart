@@ -33,6 +33,7 @@ final class _LoginPageState extends ConsumerState<LoginPage> {
     ref.listen(
       loginVMProvider,
       (_, state) {
+        debugPrint('state: ${state.status}');
         switch (state) {
           case LoginState(status: LoginStateStatus.initial):
             break;
@@ -83,7 +84,7 @@ final class _LoginPageState extends ConsumerState<LoginPage> {
                           const SizedBox(height: 24),
                           TextFormField(
                             controller: emailController
-                              ..text = 'felipe7@gmail.com',
+                              ..text = 'cristianoronaldo7@gmail.com',
                             onTapOutside: (_) => context.unfocus(),
                             validator: Validatorless.multiple([
                               Validatorless.required('E-mail obrigatório'),

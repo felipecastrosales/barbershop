@@ -53,9 +53,9 @@ class _EmployeeSchedulePageState extends ConsumerState<EmployeeSchedulePage> {
           const SizedBox(height: 44),
           scheduleAsync.when(
             loading: () => const BarbershopLoader(),
-            error: (error, stackTrace) {
+            error: (e, s) {
               const errorMessage = 'Erro ao carregar agendamento';
-              log(errorMessage, error: error, stackTrace: stackTrace);
+              log(errorMessage, error: e, stackTrace: s);
               return const Center(
                 child: Text(errorMessage),
               );

@@ -11,6 +11,7 @@ import 'package:barbershop/src/features/home/adm/home_adm_page.dart';
 import 'package:barbershop/src/features/schedule/schedule_page.dart';
 import 'package:barbershop/src/features/splash/splash_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 class BarbershopApp extends StatelessWidget {
   const BarbershopApp({super.key});
@@ -36,6 +37,13 @@ class BarbershopApp extends StatelessWidget {
             '/home/employee': (_) => const Text('EMPLOYEE'),
             '/schedule': (_) => const SchedulePage(),
           },
+          localizationsDelegates: const [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: const [Locale('pt', 'BR')],
+          locale: const Locale('pt', 'BR'),
         );
       },
     );

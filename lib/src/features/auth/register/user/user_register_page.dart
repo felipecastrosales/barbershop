@@ -48,14 +48,14 @@ final class _UserRegisterPageState extends ConsumerState<UserRegisterPage> {
           children: [
             const SizedBox(height: 20),
             TextFormField(
-              controller: nameController,
+              controller: nameController..text = 'Felipe',
               decoration: const InputDecoration(label: Text('Nome')),
               onTapOutside: (_) => context.unfocus(),
               validator: Validatorless.required('Nome obrigatório'),
             ),
             const SizedBox(height: 24),
             TextFormField(
-              controller: emailController,
+              controller: emailController..text = 'felipe@gmail.com',
               decoration: const InputDecoration(label: Text('E-mail')),
               onTapOutside: (_) => context.unfocus(),
               validator: Validatorless.multiple([
@@ -65,7 +65,7 @@ final class _UserRegisterPageState extends ConsumerState<UserRegisterPage> {
             ),
             const SizedBox(height: 24),
             TextFormField(
-              controller: passwordController,
+              controller: passwordController..text = '123456',
               decoration: const InputDecoration(label: Text('Senha')),
               obscureText: true,
               onTapOutside: (_) => context.unfocus(),
@@ -78,6 +78,7 @@ final class _UserRegisterPageState extends ConsumerState<UserRegisterPage> {
             TextFormField(
               decoration: const InputDecoration(label: Text('Confirmar senha')),
               obscureText: true,
+              controller: passwordController..text = '123456',
               onTapOutside: (_) => context.unfocus(),
               validator: Validatorless.multiple([
                 Validatorless.required('Senha obrigatória'),

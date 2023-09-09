@@ -23,7 +23,7 @@ final class BarbershopModel {
           openDays: openDays.cast<String>(),
           openHours: openHours.cast<int>(),
         ),
-      _ => throw FormatException('Invalid BarbershopModel JSON: $json'),
+      _ => throw ArgumentError('Invalid BarbershopModel JSON: $json'),
     };
   }
 

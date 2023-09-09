@@ -1,1 +1,112 @@
-{"users":[{"id":5,"name":"Felipe Sales","email":"soufeliposales@gmail.com","password":"123123","profile":"ADM","work_days":["Seg","Qua"],"work_hours":[6,7,8]},{"id":6,"name":"cris","email":"cristianoronaldo7@gmail.com","password":"123456","profile":"ADM"}],"adm_users":[],"barbershop":[{"id":2,"user_id":"5","name":"Barbearia Wayer","email":"barbeariawayer@gmail.com","opening_days":["Seg","Qua","Sab"],"opening_hours":[6,7,8,9,18,19,20,12,13]},{"id":3,"user_id":"6","name":"Testeee","email":"teste@gmail.com","opening_days":["Ter","Seg","Qua","Qui","Sex","Sab","Dom"],"opening_hours":[10,9,8,7,6,11,12,13,14,15]}],"schedules":[{"id":1,"barbershop_id":2,"user_id":5,"client_name":"teste","date":"2023-08-09T00:00:00.000Z","time":8}]}
+{
+    "users": [
+        {
+            "id": 5,
+            "name": "Felipe",
+            "email": "felipe@gmail.com",
+            "password": "123123",
+            "profile": "ADM",
+            "work_days": [
+                "Seg",
+                "Qua"
+            ],
+            "work_hours": [
+                6,
+                7,
+                8
+            ]
+        },
+        {
+            "id": 6,
+            "name": "Felipe",
+            "email": "felipe@gmail.com",
+            "password": "123456",
+            "profile": "ADM",
+            "work_days": [
+                "Seg",
+                "Ter",
+                "Qua",
+                "Qui",
+                "Sex",
+                "Sab",
+                "Dom"
+            ],
+            "work_hours": [
+                8
+            ]
+        },
+        {
+            "id": 7,
+            "name": "Tito ",
+            "email": "tito@gmail.com",
+            "password": "123456",
+            "work_days": [
+                "Qui",
+                "Qua"
+            ],
+            "work_hours": [
+                8,
+                13,
+                18
+            ],
+            "barbershop_id": 3,
+            "profile": "EMPLOYEE"
+        }
+    ],
+    "adm_users": [],
+    "barbershop": [
+        {
+            "id": 2,
+            "user_id": "5",
+            "name": "Barber X",
+            "email": "barbearx@gmail.com",
+            "opening_days": [
+                "Seg",
+                "Qua",
+                "Sab"
+            ],
+            "opening_hours": [
+                6,
+                7,
+                8,
+                9,
+                18,
+                19,
+                20,
+                12,
+                13
+            ]
+        },
+        {
+            "id": 3,
+            "user_id": "6",
+            "name": "Barber CR7",
+            "email": "cr7barber@gmail.com",
+            "opening_days": [
+                "Seg",
+                "Ter",
+                "Qui",
+                "Qua",
+                "Sex",
+                "Sab",
+                "Dom"
+            ],
+            "opening_hours": [
+                23,
+                18,
+                13,
+                8
+            ]
+        }
+    ],
+    "schedules": [
+        {
+            "id": 1,
+            "barbershop_id": 2,
+            "user_id": 5,
+            "client_name": "cr7",
+            "date": "2023-08-09T00:00:00.000Z",
+            "time": 8
+        }
+    ]
+}

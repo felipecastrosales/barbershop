@@ -83,8 +83,7 @@ final class _LoginPageState extends ConsumerState<LoginPage> {
                           ),
                           const SizedBox(height: 24),
                           TextFormField(
-                            controller: emailController
-                              ..text = 'cristianoronaldo7@gmail.com',
+                            controller: emailController,
                             onTapOutside: (_) => context.unfocus(),
                             validator: Validatorless.multiple([
                               Validatorless.required('E-mail obrigatório'),
@@ -101,7 +100,7 @@ final class _LoginPageState extends ConsumerState<LoginPage> {
                           ),
                           const SizedBox(height: 24),
                           TextFormField(
-                            controller: passwordController..text = '123456',
+                            controller: passwordController,
                             onTapOutside: (_) => context.unfocus(),
                             validator: Validatorless.multiple([
                               Validatorless.required('Senha obrigatória'),
@@ -123,7 +122,7 @@ final class _LoginPageState extends ConsumerState<LoginPage> {
                             child: Text(
                               'Esqueceu a senha?',
                               style: TextStyle(
-                                // color: ColorConstants.brown,
+                                color: ColorConstants.brown,
                                 fontSize: 12,
                               ),
                             ),

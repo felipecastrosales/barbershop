@@ -61,7 +61,6 @@ class _EmployeeSchedulePageState extends ConsumerState<EmployeeSchedulePage> {
               );
             },
             data: (schedules) {
-              log('schedules: $schedules');
               return Expanded(
                 child: SfCalendar(
                   allowViewNavigation: true,
@@ -76,6 +75,13 @@ class _EmployeeSchedulePageState extends ConsumerState<EmployeeSchedulePage> {
                       ignoreFirstLoad = false;
                       return;
                     }
+                    final employeeSchedule = ref.read(
+                      employeeScheduleVMProvider(userId, dateSelected).notifier,
+                    );
+                    employeeSchedule.changeDate(
+                      userId,
+                      viewChangedDetails.visibleDates.first,
+                    );
                   },
                   onTap: (calendarTapDetails) {
                     if (calendarTapDetails.appointments?.isNotEmpty ?? false) {
@@ -90,7 +96,8 @@ class _EmployeeSchedulePageState extends ConsumerState<EmployeeSchedulePage> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    'Cliente: ${(calendarTapDetails.appointments as List<Appointment>).first.subject}',
+                                    // ignore: avoid_dynamic_calls
+                                    'Cliente: ${calendarTapDetails.appointments!.first.subject}',
                                   ),
                                   Text(
                                     'Horário: ${dateFormat.format(calendarTapDetails.date ?? DateTime.now())}',

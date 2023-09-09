@@ -58,14 +58,14 @@ final class _BarbershopRegisterPageState
           children: [
             const SizedBox(height: 5),
             TextFormField(
-              controller: nameController..text = 'Barber CR7',
+              controller: nameController,
               decoration: const InputDecoration(label: Text('Nome')),
               onTapOutside: (_) => context.unfocus(),
               validator: Validatorless.required('Nome obrigatório'),
             ),
             const SizedBox(height: 24),
             TextFormField(
-              controller: emailController..text = 'cr7barber@gmail.com',
+              controller: emailController,
               decoration: const InputDecoration(label: Text('E-mail')),
               onTapOutside: (_) => context.unfocus(),
               validator: Validatorless.multiple([

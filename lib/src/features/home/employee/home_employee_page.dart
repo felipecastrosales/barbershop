@@ -105,6 +105,7 @@ class HomeEmployeePage extends ConsumerWidget {
                             '/schedule',
                             arguments: user,
                           );
+                          ref.invalidate(getTotalSchedulesTodayProvider(id));
                         },
                         style: ElevatedButton.styleFrom(
                           minimumSize: const Size.fromHeight(56),

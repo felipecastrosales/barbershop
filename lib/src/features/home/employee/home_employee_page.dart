@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:barbershop/src/features/home/employee/home_employee_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:barbershop/src/core/constants.dart';
@@ -36,7 +37,7 @@ class HomeEmployeePage extends ConsumerWidget {
               SliverFillRemaining(
                 hasScrollBody: false,
                 child: Padding(
-                  padding: const EdgeInsets.all(24.0),
+                  padding: const EdgeInsets.all(24),
                   child: Column(
                     children: [
                       const AvatarWidget.withoutButton(),
@@ -56,38 +57,40 @@ class HomeEmployeePage extends ConsumerWidget {
                           border: Border.all(color: ColorConstants.grey),
                           borderRadius: BorderRadius.circular(8),
                         ),
-                        child: const Column(
+                        child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            // Consumer(
-                            //   builder: (context, ref, child) {
-                            //     // final totalAsync = ref
-                            //     //     .watch(getTotalSchedulesTodayProvider(id));
-                            //     return totalAsync.when(
-                            //       error: (e, s) {
-                            // const errorMessage = 'Erro ao carregar total de agendamentos';
-                            //         return const Text(
-                            //           errorMessage,
-                            //         );
-                            //       },
-                            //       loading: () => const BarbershopLoader(),
-                            //       skipLoadingOnRefresh: false,
-                            //       data: (totalScheduule) {
-                            //         return Text(
-                            //           '$totalScheduule',
-                            //           style: const TextStyle(
-                            //             fontSize: 32,
-                            //             fontWeight: FontWeight.w600,
-                            //           ),
-                            //         );
-                            //       },
-                            //     );
-                            //   },
-                            // ),
-                            Text(
+                            Consumer(
+                              builder: (context, ref, child) {
+                                final totalAsync = ref.watch(
+                                  getTotalSchedulesTodayProvider(id),
+                                );
+
+                                return totalAsync.when(
+                                  error: (e, s) {
+                                    const errorMessage =
+                                        'Erro ao carregar total de agendamentos';
+                                    return const Text(errorMessage);
+                                  },
+                                  loading: () => const BarbershopLoader(),
+                                  skipLoadingOnRefresh: false,
+                                  data: (totalScheduule) {
+                                    return Text(
+                                      '$totalScheduule',
+                                      style: const TextStyle(
+                                        fontSize: 40,
+                                        color: ColorConstants.brown,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
+                            ),
+                            const Text(
                               'Hoje',
                               style: TextStyle(
-                                fontSize: 14,
+                                fontSize: 16,
                                 color: ColorConstants.brown,
                                 fontWeight: FontWeight.w600,
                               ),

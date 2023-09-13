@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:barbershop/src/core/constants.dart';
+import 'package:barbershop/src/core/constants/constants.dart';
 import 'package:barbershop/src/core/ui/helpers/messages.dart';
 import 'package:barbershop/src/features/auth/login/login_page.dart';
 import 'package:barbershop/src/features/splash/splash_vm.dart';
@@ -58,7 +58,7 @@ final class _SplashPageState extends ConsumerState<SplashPage> {
       body: DecoratedBox(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(ImageConstants.backgroundChair),
+            image: AssetImage(AppImages.backgroundChair),
             fit: BoxFit.cover,
             opacity: 0.2,
           ),
@@ -82,7 +82,7 @@ final class _SplashPageState extends ConsumerState<SplashPage> {
               curve: Curves.linearToEaseOut,
               duration: const Duration(seconds: 3),
               child: Image.asset(
-                ImageConstants.imgLogo,
+                AppImages.imgLogo,
                 fit: BoxFit.cover,
               ),
             ),

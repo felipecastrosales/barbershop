@@ -1,4 +1,4 @@
-import 'package:barbershop/src/core/constants.dart';
+import 'package:barbershop/src/core/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 class WeekdaysPanel extends StatelessWidget {
@@ -93,10 +93,9 @@ class ButtonDayState extends State<ButtonDay> {
 
   @override
   Widget build(BuildContext context) {
-    final textColor = selected ? Colors.white : ColorConstants.grey;
-    var buttonColor = selected ? ColorConstants.brown : Colors.white;
-    final buttonBorderColor =
-        selected ? ColorConstants.brown : ColorConstants.grey;
+    final textColor = selected ? Colors.white : AppColors.grey;
+    var buttonColor = selected ? AppColors.brown : Colors.white;
+    final buttonBorderColor = selected ? AppColors.brown : AppColors.grey;
 
     final ButtonDay(:enabledDays, :label) = widget;
 

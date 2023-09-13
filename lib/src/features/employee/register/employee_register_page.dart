@@ -182,24 +182,6 @@ class _EmployeeRegisterPageState extends ConsumerState<EmployeeRegisterPage> {
                             case false || null:
                               context.showError('Existem campos inválidos');
                             case true:
-                              // final EmployeeRegisterState(
-                              //   :workDays,
-                              //   :workHours
-                              // ) = ref.watch(employeeRegisterVMProvider);
-
-                              // if (workDays.isEmpty || workHours.isEmpty) {
-                              //   context.showError(
-                              //     'Selecione os dias da semana e horário de atendimento',
-                              //   );
-                              //   return;
-                              // }
-
-                              // employeeRegisterVM.register(
-                              //   name: nameController.text,
-                              //   email: emailController.text,
-                              //   password: passwordController.text,
-                              // );
-
                               final EmployeeRegisterState(
                                 workDays: List(isEmpty: hasWorkDays),
                                 workHours: List(isEmpty: hasWorkHours),

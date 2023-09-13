@@ -19,8 +19,13 @@ final class _UserRegisterPageState extends ConsumerState<UserRegisterPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  // final register =
-  //     (nameController.text, emailController.text, passwordController.text);f
+  @override
+  void dispose() {
+    nameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +61,7 @@ final class _UserRegisterPageState extends ConsumerState<UserRegisterPage> {
             const SizedBox(height: 24),
             TextFormField(
               controller: emailController,
+              keyboardType: TextInputType.emailAddress,
               decoration: const InputDecoration(label: Text('E-mail')),
               onTapOutside: (_) => context.unfocus(),
               validator: Validatorless.multiple([
@@ -106,13 +112,5 @@ final class _UserRegisterPageState extends ConsumerState<UserRegisterPage> {
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    nameController.dispose();
-    emailController.dispose();
-    passwordController.dispose();
-    super.dispose();
   }
 }

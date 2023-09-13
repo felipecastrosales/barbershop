@@ -77,13 +77,14 @@ class EmployeeRegisterVM extends _$EmployeeRegisterVM {
       resultRegister = await registerEmployee(dto);
     }
 
-    switch (resultRegister) {
-      case Success():
-        state = state.copyWith(status: EmployeeRegisterStateStatus.success);
-      case Failure():
-        state = state.copyWith(status: EmployeeRegisterStateStatus.error);
-    }
+    state = state.copyWith(
+      status: switch (resultRegister) {
+        Success() => EmployeeRegisterStateStatus.success,
+        Failure() => EmployeeRegisterStateStatus.error,
+      },
+    );
 
     asyncLoaderHandler.close();
   }
 }
+

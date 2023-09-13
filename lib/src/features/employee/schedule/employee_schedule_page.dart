@@ -1,5 +1,5 @@
 import 'dart:developer';
-import 'package:barbershop/src/core/constants.dart';
+import 'package:barbershop/src/core/constants/constants.dart';
 import 'package:barbershop/src/core/ui/widgets/barbershop_loader.dart';
 import 'package:barbershop/src/features/employee/schedule/appointment_data_source.dart';
 import 'package:barbershop/src/features/employee/schedule/employee_schedule_vm.dart';
@@ -66,7 +66,7 @@ class _EmployeeSchedulePageState extends ConsumerState<EmployeeSchedulePage> {
                   allowViewNavigation: true,
                   view: CalendarView.day,
                   showNavigationArrow: true,
-                  todayHighlightColor: ColorConstants.brown,
+                  todayHighlightColor: AppColors.brown,
                   showDatePickerButton: true,
                   showTodayButton: true,
                   dataSource: AppointmentDataSource(schedules: schedules),

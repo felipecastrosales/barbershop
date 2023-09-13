@@ -1,4 +1,4 @@
-import 'package:barbershop/src/core/constants.dart';
+import 'package:barbershop/src/core/constants/constants.dart';
 import 'package:barbershop/src/core/ui/helpers/form_helper.dart';
 import 'package:barbershop/src/core/ui/helpers/messages.dart';
 import 'package:barbershop/src/features/auth/login/login_state.dart';
@@ -57,7 +57,7 @@ final class _LoginPageState extends ConsumerState<LoginPage> {
       body: DecoratedBox(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(ImageConstants.backgroundChair),
+            image: AssetImage(AppImages.backgroundChair),
             fit: BoxFit.cover,
             opacity: 0.2,
           ),
@@ -77,7 +77,7 @@ final class _LoginPageState extends ConsumerState<LoginPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Image.asset(
-                            ImageConstants.imgLogo,
+                            AppImages.imgLogo,
                             width: 150,
                             height: 170,
                           ),
@@ -85,6 +85,7 @@ final class _LoginPageState extends ConsumerState<LoginPage> {
                           TextFormField(
                             controller: emailController,
                             onTapOutside: (_) => context.unfocus(),
+                            keyboardType: TextInputType.emailAddress,
                             validator: Validatorless.multiple([
                               Validatorless.required('E-mail obrigatório'),
                               Validatorless.email('E-mail inválido'),
@@ -122,7 +123,7 @@ final class _LoginPageState extends ConsumerState<LoginPage> {
                             child: Text(
                               'Esqueceu a senha?',
                               style: TextStyle(
-                                color: ColorConstants.brown,
+                                color: AppColors.brown,
                                 fontSize: 12,
                               ),
                             ),

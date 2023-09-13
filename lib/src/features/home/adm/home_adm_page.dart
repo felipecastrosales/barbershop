@@ -1,6 +1,8 @@
 import 'dart:developer';
 
-import 'package:barbershop/src/core/constants.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:barbershop/src/core/constants/constants.dart';
 import 'package:barbershop/src/core/providers/application_providers.dart';
 import 'package:barbershop/src/core/ui/barbershop_icons.dart';
 import 'package:barbershop/src/core/ui/widgets/barbershop_loader.dart';
@@ -8,8 +10,6 @@ import 'package:barbershop/src/features/home/adm/home_adm_state.dart';
 import 'package:barbershop/src/features/home/adm/home_adm_vm.dart';
 import 'package:barbershop/src/features/home/adm/widgets/home_employee_tile.dart';
 import 'package:barbershop/src/features/home/widgets/home_header.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HomeADMPage extends ConsumerWidget {
   const HomeADMPage({super.key});
@@ -26,13 +26,13 @@ class HomeADMPage extends ConsumerWidget {
           ref.invalidate(homeADMVMProvider);
         },
         shape: const CircleBorder(),
-        backgroundColor: ColorConstants.brown,
+        backgroundColor: AppColors.brown,
         child: const CircleAvatar(
           backgroundColor: Colors.white,
           maxRadius: 12,
           child: Icon(
             BarbershopIcons.addEmployee,
-            color: ColorConstants.brown,
+            color: AppColors.brown,
           ),
         ),
       ),

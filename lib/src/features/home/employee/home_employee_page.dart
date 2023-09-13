@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:barbershop/src/features/home/employee/home_employee_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:barbershop/src/core/constants.dart';
+import 'package:barbershop/src/core/constants/constants.dart';
 import 'package:barbershop/src/core/providers/application_providers.dart';
 import 'package:barbershop/src/core/ui/widgets/avatar_widget.dart';
 import 'package:barbershop/src/core/ui/widgets/barbershop_loader.dart';
@@ -54,7 +54,7 @@ class HomeEmployeePage extends ConsumerWidget {
                         width: MediaQuery.of(context).size.width * .7,
                         height: 108,
                         decoration: BoxDecoration(
-                          border: Border.all(color: ColorConstants.grey),
+                          border: Border.all(color: AppColors.grey),
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Column(
@@ -79,7 +79,7 @@ class HomeEmployeePage extends ConsumerWidget {
                                       '$totalScheduule',
                                       style: const TextStyle(
                                         fontSize: 40,
-                                        color: ColorConstants.brown,
+                                        color: AppColors.brown,
                                         fontWeight: FontWeight.w600,
                                       ),
                                     );
@@ -91,7 +91,7 @@ class HomeEmployeePage extends ConsumerWidget {
                               'Hoje',
                               style: TextStyle(
                                 fontSize: 16,
-                                color: ColorConstants.brown,
+                                color: AppColors.brown,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),

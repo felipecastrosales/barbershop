@@ -22,7 +22,6 @@ class HomeADMVM extends _$HomeADMVM {
 
     switch (employeesResult) {
       case Success(value: final employeesData):
-        // _? -> different of null
         final employees = <UserModel>[];
         if (me case UserModelADM(workDays: _?, workHours: _?)) {
           employees.add(me);

@@ -1,4 +1,4 @@
-import 'package:barbershop/src/core/constants.dart';
+import 'package:barbershop/src/core/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 class HoursPanel extends StatefulWidget {
@@ -112,20 +112,13 @@ class _TimeButtonState extends State<TimeButton> {
       :onPressed,
     ) = widget;
 
-    if (singleSelection) {
-      if (timeSelected != null) {
-        if (timeSelected == value) {
-          selected = true;
-        } else {
-          selected = false;
-        }
-      }
+    if (singleSelection && timeSelected != null) {
+      selected = timeSelected == value;
     }
 
-    final textColor = selected ? Colors.white : ColorConstants.grey;
-    var buttonColor = selected ? ColorConstants.brown : Colors.white;
-    final buttonBorderColor =
-        selected ? ColorConstants.brown : ColorConstants.grey;
+    final textColor = selected ? Colors.white : AppColors.grey;
+    var buttonColor = selected ? AppColors.brown : Colors.white;
+    final buttonBorderColor = selected ? AppColors.brown : AppColors.grey;
 
     final disableTime = enabledTimes != null && !enabledTimes.contains(value);
 

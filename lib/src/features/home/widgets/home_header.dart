@@ -1,4 +1,4 @@
-import 'package:barbershop/src/core/constants.dart';
+import 'package:barbershop/src/core/constants/constants.dart';
 import 'package:barbershop/src/core/providers/application_providers.dart';
 import 'package:barbershop/src/core/ui/barbershop_icons.dart';
 import 'package:barbershop/src/core/ui/widgets/barbershop_loader.dart';
@@ -18,7 +18,7 @@ class HomeHeader extends ConsumerWidget {
 
     return Container(
       width: MediaQuery.sizeOf(context).width,
-      padding: const EdgeInsets.all(24),
+      padding: const EdgeInsets.all(16),
       decoration: const BoxDecoration(
         color: Colors.black,
         borderRadius: BorderRadius.only(
@@ -29,7 +29,7 @@ class HomeHeader extends ConsumerWidget {
           fit: BoxFit.cover,
           opacity: 0.5,
           image: AssetImage(
-            ImageConstants.backgroundChair,
+            AppImages.backgroundChair,
           ),
         ),
       ),
@@ -48,9 +48,9 @@ class HomeHeader extends ConsumerWidget {
                   child: SizedBox.shrink(),
                 ),
                 const SizedBox(width: 16),
-                Flexible(
+                Expanded(
                   child: Text(
-                    '${barbershop.name} asdsadasdasdasdadadasdsdasdasdasdasd',
+                    barbershop.name,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     style: const TextStyle(
@@ -60,11 +60,11 @@ class HomeHeader extends ConsumerWidget {
                     ),
                   ),
                 ),
-                const SizedBox(width: 16),
+                const Spacer(),
                 const Text(
                   'Editar',
                   style: TextStyle(
-                    color: ColorConstants.brown,
+                    color: AppColors.brown,
                     fontSize: 12,
                     fontWeight: FontWeight.w700,
                   ),
@@ -76,7 +76,7 @@ class HomeHeader extends ConsumerWidget {
                   },
                   icon: const Icon(
                     BarbershopIcons.exit,
-                    color: ColorConstants.brown,
+                    color: AppColors.brown,
                     size: 32,
                   ),
                 ),
@@ -92,9 +92,7 @@ class HomeHeader extends ConsumerWidget {
               fontSize: 18,
             ),
           ),
-          const SizedBox(
-            height: 24,
-          ),
+          const SizedBox(height: 24),
           const Text(
             'Agende um Cliente',
             style: TextStyle(
@@ -105,9 +103,7 @@ class HomeHeader extends ConsumerWidget {
           ),
           Offstage(
             offstage: hideFilter,
-            child: const SizedBox(
-              height: 24,
-            ),
+            child: const SizedBox(height: 24),
           ),
           Offstage(
             offstage: hideFilter,
@@ -115,10 +111,10 @@ class HomeHeader extends ConsumerWidget {
               decoration: const InputDecoration(
                 hintText: 'Buscar colaborador',
                 suffixIcon: Padding(
-                  padding: EdgeInsets.only(right: 24.0),
+                  padding: EdgeInsets.only(right: 24),
                   child: Icon(
                     BarbershopIcons.search,
-                    color: ColorConstants.brown,
+                    color: AppColors.brown,
                   ),
                 ),
               ),

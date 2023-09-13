@@ -1,4 +1,4 @@
-import 'package:barbershop/src/core/constants.dart';
+import 'package:barbershop/src/core/constants/constants.dart';
 import 'package:barbershop/src/core/ui/barbershop_icons.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +20,7 @@ class AvatarWidget extends StatelessWidget {
             height: 92,
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(ImageConstants.avatar),
+                image: AssetImage(AppImages.avatar),
               ),
             ),
           ),
@@ -34,13 +34,13 @@ class AvatarWidget extends StatelessWidget {
                   shape: BoxShape.circle,
                   color: Colors.white,
                   border: Border.all(
-                    color: ColorConstants.brown,
+                    color: AppColors.brown,
                     width: 4,
                   ),
                 ),
                 child: const Icon(
                   BarbershopIcons.addEmployee,
-                  color: ColorConstants.brown,
+                  color: AppColors.brown,
                   size: 20,
                 ),
               ),

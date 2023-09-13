@@ -1,4 +1,4 @@
-import 'package:barbershop/src/core/constants.dart';
+import 'package:barbershop/src/core/constants/constants.dart';
 import 'package:barbershop/src/core/ui/barbershop_icons.dart';
 import 'package:barbershop/src/models/user_model.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +19,7 @@ class HomeEmployeeTile extends StatelessWidget {
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: ColorConstants.grey),
+        border: Border.all(color: AppColors.grey),
       ),
       child: Row(
         children: [
@@ -27,13 +27,13 @@ class HomeEmployeeTile extends StatelessWidget {
             width: 56,
             height: 56,
             decoration: BoxDecoration(
-              color: ColorConstants.grey,
+              color: AppColors.grey,
               borderRadius: BorderRadius.circular(8),
               image: DecorationImage(
                 fit: BoxFit.cover,
                 image: switch (employee.avatar) {
                   final avatar? => NetworkImage(avatar),
-                  _ => const AssetImage(ImageConstants.avatar),
+                  _ => const AssetImage(AppImages.avatar),
                 } as ImageProvider<Object>,
               ),
             ),
@@ -82,12 +82,12 @@ class HomeEmployeeTile extends StatelessWidget {
                     ),
                     const Icon(
                       BarbershopIcons.penEdit,
-                      color: ColorConstants.brown,
+                      color: AppColors.brown,
                       size: 16,
                     ),
                     const Icon(
                       BarbershopIcons.trash,
-                      color: ColorConstants.red,
+                      color: AppColors.red,
                       size: 16,
                     ),
                   ],

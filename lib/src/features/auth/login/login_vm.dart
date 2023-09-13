@@ -24,8 +24,9 @@ class LoginVM extends _$LoginVM {
 
     switch (result) {
       case Success():
-        ref.invalidate(getMeProvider);
-        ref.invalidate(getMyBarbershopProvider); //cascade
+        ref
+          ..invalidate(getMeProvider)
+          ..invalidate(getMyBarbershopProvider);
         final userModel = await ref.read(getMeProvider.future);
         state.copyWith(
           status: switch (userModel) {

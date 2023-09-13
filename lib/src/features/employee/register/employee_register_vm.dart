@@ -87,4 +87,3 @@ class EmployeeRegisterVM extends _$EmployeeRegisterVM {
     asyncLoaderHandler.close();
   }
 }
-

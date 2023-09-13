@@ -1,14 +1,14 @@
 import 'dart:developer';
 
-import 'package:barbershop/src/features/home/employee/home_employee_provider.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:barbershop/src/core/constants/constants.dart';
 import 'package:barbershop/src/core/providers/application_providers.dart';
 import 'package:barbershop/src/core/ui/widgets/avatar_widget.dart';
 import 'package:barbershop/src/core/ui/widgets/barbershop_loader.dart';
+import 'package:barbershop/src/features/home/employee/home_employee_provider.dart';
 import 'package:barbershop/src/features/home/widgets/home_header.dart';
 import 'package:barbershop/src/models/user_model.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HomeEmployeePage extends ConsumerWidget {
   const HomeEmployeePage({super.key});

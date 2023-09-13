@@ -1,11 +1,11 @@
 import 'package:barbershop/src/core/constants/local_storage_keys.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:barbershop/src/core/exceptions/auth_exception.dart';
 import 'package:barbershop/src/core/exceptions/service_exception.dart';
 import 'package:barbershop/src/core/fp/either.dart';
 import 'package:barbershop/src/core/fp/nil.dart';
 import 'package:barbershop/src/repositories/user/user_repository.dart';
 import 'package:barbershop/src/services/user_login/user_login_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final class UserLoginServiceImpl implements UserLoginService {
   UserLoginServiceImpl({

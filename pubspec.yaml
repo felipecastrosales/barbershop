@@ -38,9 +38,9 @@ flutter:
   assets:
     - assets/images/
   fonts:
-    - family: dw_barbershop_icons
+    - family: barbershop_icons
       fonts:
-        - asset: assets/fonts/dw_barbershop_icons.ttf
+        - asset: assets/fonts/barbershop_icons.ttf
     - family: Poppins
       fonts:
         - asset: assets/fonts/Poppins/Poppins-Italic.ttf

@@ -1,4 +1,4 @@
-import 'package:barbershop/src/core/constants/local_storage_keys.dart';
+import 'package:barbershop/src/core/constants/constants.dart';
 import 'package:barbershop/src/core/providers/application_providers.dart';
 import 'package:barbershop/src/models/user_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';

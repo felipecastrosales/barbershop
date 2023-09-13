@@ -6,6 +6,7 @@ linter:
     - always_use_package_imports
     - avoid_dynamic_calls
     - avoid_relative_lib_imports
+    - directives_ordering
     - implementation_imports
     - require_trailing_commas
     - sized_box_for_whitespace

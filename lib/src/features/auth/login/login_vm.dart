@@ -24,21 +24,16 @@ class LoginVM extends _$LoginVM {
 
     switch (result) {
       case Success():
-        ref.invalidate(getMeProvider);
-        ref.invalidate(getMyBarbershopProvider); //cascade
+        ref
+          ..invalidate(getMeProvider)
+          ..invalidate(getMyBarbershopProvider);
         final userModel = await ref.read(getMeProvider.future);
-        switch (userModel) {
-          case UserModelADM():
-            state = state.copyWith(status: LoginStateStatus.admLogin);
-          case UserModelEmployee():
-            state = state.copyWith(status: LoginStateStatus.employeeLogin);
-        }
-      // state.copyWith(
-      //   status: switch (userModel) {
-      //     UserModelADM() => LoginStateStatus.admLogin,
-      //     UserModelEmployee() => LoginStateStatus.employeeLogin,
-      //   },
-      // );
+        state.copyWith(
+          status: switch (userModel) {
+            UserModelADM() => LoginStateStatus.admLogin,
+            UserModelEmployee() => LoginStateStatus.employeeLogin,
+          },
+        );
 
       case Failure(exception: ServiceException(:final message)):
         state = state.copyWith(

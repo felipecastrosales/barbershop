@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class BarbershopIcons {
-  static const String _fontFamily = 'dw_barbershop_icons';
+  static const String _fontFamily = 'barbershop_icons';
 
   static const IconData addEmployee = IconData(0xe900, fontFamily: _fontFamily);
   static const changeAvatar = IconData(0xe901, fontFamily: _fontFamily);

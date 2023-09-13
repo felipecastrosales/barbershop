@@ -1,4 +1,4 @@
-import 'package:barbershop/src/core/constants.dart';
+import 'package:barbershop/src/core/constants/constants.dart';
 import 'package:barbershop/src/models/schedule_model.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
@@ -21,7 +21,7 @@ class AppointmentDataSource extends CalendarDataSource {
         final endTime = DateTime(year, month, day, hour + 1, 0, 0);
 
         return Appointment(
-          color: ColorConstants.brown,
+          color: AppColors.brown,
           startTime: startTime,
           endTime: endTime,
           subject: clientName,

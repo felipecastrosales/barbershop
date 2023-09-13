@@ -1,4 +1,4 @@
-import 'package:barbershop/src/core/constants.dart';
+import 'package:barbershop/src/core/constants/constants.dart';
 import 'package:barbershop/src/core/ui/helpers/messages.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -70,11 +70,11 @@ class _ScheduleCalendarState extends State<ScheduleCalendar> {
             selectedDayPredicate: (day) => isSameDay(selectedDay, day),
             calendarStyle: CalendarStyle(
               selectedDecoration: const BoxDecoration(
-                color: ColorConstants.brown,
+                color: AppColors.brown,
                 shape: BoxShape.circle,
               ),
               todayDecoration: BoxDecoration(
-                color: ColorConstants.brown.withOpacity(0.4),
+                color: AppColors.brown.withOpacity(0.4),
                 shape: BoxShape.circle,
               ),
             ),
@@ -89,7 +89,7 @@ class _ScheduleCalendarState extends State<ScheduleCalendar> {
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
-                    color: ColorConstants.brown,
+                    color: AppColors.brown,
                   ),
                 ),
               ),
@@ -106,7 +106,7 @@ class _ScheduleCalendarState extends State<ScheduleCalendar> {
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
-                    color: ColorConstants.brown,
+                    color: AppColors.brown,
                   ),
                 ),
               ),

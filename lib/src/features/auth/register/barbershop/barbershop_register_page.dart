@@ -68,6 +68,7 @@ final class _BarbershopRegisterPageState
               controller: emailController,
               decoration: const InputDecoration(label: Text('E-mail')),
               onTapOutside: (_) => context.unfocus(),
+              keyboardType: TextInputType.emailAddress,
               validator: Validatorless.multiple([
                 Validatorless.required('E-mail obrigatório'),
                 Validatorless.email('E-mail inválido'),

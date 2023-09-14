@@ -100,7 +100,6 @@ $ dart pub global activate json_rest_server
 - Inicie o json_rest_server:
 $ cd api
 
-
 - Execute:
 $ json_rest_server run
 

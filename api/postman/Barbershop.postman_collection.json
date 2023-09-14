@@ -1,0 +1,125 @@
+{
+	"info": {
+		"_postman_id": "12302d33-c305-49b0-a90e-dd8073d5d881",
+		"name": "Barbershop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "741492"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG0iOmZhbHNlLCJleHAiOjE2OTE0MTg3MjMsImlhdCI6MTY5MTQxNTEyMywiaXNzIjoianNvbl9yZXN0X3NlcnZlciIsIm5iZiI6MTY5MTQxNTEyMywic3ViIjoiMiJ9.grFKSv7PVn_NpU4y-ImguaP2AgCYw51i328vKp6yKHw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user_id\": \"#userAuthRef\",\r\n    \"name\": \"Barbershop name\",\r\n    \"email\": \"babershop@email.com\",\r\n    \"opening_days\": [\r\n        \"Seg\",\r\n        \"Qua\",\r\n        \"Sab\"\r\n    ],\r\n    \"opening_hours\": [\r\n        6,\r\n        7,\r\n        8,\r\n        9,\r\n        18,\r\n        19,\r\n        20,\r\n        12,\r\n        13\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/barbershop",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"barbershop"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Barbershop",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG0iOmZhbHNlLCJleHAiOjE2OTE4NTAwMTUsImlhdCI6MTY5MTg0NjQxNSwiaXNzIjoianNvbl9yZXN0X3NlcnZlciIsIm5iZiI6MTY5MTg0NjQxNSwic3ViIjoiNSJ9.rGaA7Gy1mb3S6JmqjPbamUvhfjPP1q55OR7_0zz3cDk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/barbershop?user_id=%23userAuthRef",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"barbershop"
+					],
+					"query": [
+						{
+							"key": "user_id",
+							"value": "%23userAuthRef"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Barbershop by Id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG0iOmZhbHNlLCJleHAiOjE2OTE2NzczNjEsImlhdCI6MTY5MTY3Mzc2MSwiaXNzIjoianNvbl9yZXN0X3NlcnZlciIsIm5iZiI6MTY5MTY3Mzc2MSwic3ViIjoiNSJ9.34Hyo3XYpzrUxi8jL_-RYjU0GmrjxOW0SwFEaxGcp9A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user_id\": \"#userAuthRef\",\r\n    \"name\": \"Barbershop name\",\r\n    \"email\": \"babershop@email.com\",\r\n    \"opening_days\": [\r\n        \"Seg\",\r\n        \"Qua\",\r\n        \"Sab\"\r\n    ],\r\n    \"opening_hours\": [\r\n        6,\r\n        7,\r\n        8,\r\n        9,\r\n        18,\r\n        19,\r\n        20,\r\n        12,\r\n        13\r\n    ],\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/barbershop/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"barbershop",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

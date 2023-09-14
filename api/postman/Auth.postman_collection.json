@@ -1,0 +1,116 @@
+{
+	"info": {
+		"_postman_id": "f76fed62-61f6-402d-afbb-6f0bf5f424a3",
+		"name": "Auth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "741492"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"rodrigorahman1@gmail.com\",\r\n    \"password\": \"123123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.15.103:8080/auth",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"15",
+						"103"
+					],
+					"port": "8080",
+					"path": [
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Rodrigo Silva Rahman de Almeida\",\r\n    \"email\": \"rodrigorahman123@gmail.com\",\r\n    \"password\": \"123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.15.103:8080/users",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"15",
+						"103"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "me",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG0iOmZhbHNlLCJleHAiOjE2OTE2NzQxMTAsImlhdCI6MTY5MTY3MDUxMCwiaXNzIjoianNvbl9yZXN0X3NlcnZlciIsIm5iZiI6MTY5MTY3MDUxMCwic3ViIjoiNSJ9.4PyYsDqyIlDZQiWxvTcsDVDqTXrQvtz0i-_F340QowQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.15.103:8080/me",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"15",
+						"103"
+					],
+					"port": "8080",
+					"path": [
+						"me"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

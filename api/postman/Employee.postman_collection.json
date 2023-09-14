@@ -1,0 +1,83 @@
+{
+	"info": {
+		"_postman_id": "13d446bc-d860-4728-9c40-6e8486d3b874",
+		"name": "Employee",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "741492"
+	},
+	"item": [
+		{
+			"name": "Get Employee",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG0iOmZhbHNlLCJleHAiOjE2OTE4NTAwMTUsImlhdCI6MTY5MTg0NjQxNSwiaXNzIjoianNvbl9yZXN0X3NlcnZlciIsIm5iZiI6MTY5MTg0NjQxNSwic3ViIjoiNSJ9.rGaA7Gy1mb3S6JmqjPbamUvhfjPP1q55OR7_0zz3cDk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users?barbershop_id=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "barbershop_id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG0iOmZhbHNlLCJleHAiOjE2OTE4NTAwMTUsImlhdCI6MTY5MTg0NjQxNSwiaXNzIjoianNvbl9yZXN0X3NlcnZlciIsIm5iZiI6MTY5MTg0NjQxNSwic3ViIjoiNSJ9.rGaA7Gy1mb3S6JmqjPbamUvhfjPP1q55OR7_0zz3cDk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Rodrigo Rahman 1 Employee\",\r\n    \"email\": \"rodrigorahman1employee@gmail.com\",\r\n    \"password\": \"123123\",\r\n    \"profile\": \"EMPLOYEE\",\r\n    \"barbershop_id\": 2,\r\n    \"work_days\": [\r\n        \"Seg\",\r\n        \"Qua\"\r\n    ],\r\n    \"work_hours\": [\r\n        6,\r\n        7,\r\n        8\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -6,22 +6,22 @@
 
 ---
 
-<h2>Tópicos 📋</h2>
+<h2>Topics 📋</h2>
 
-- [📖 Sobre](#-sobre)
+- [📖 Sobre](#-about)
 - [📱 Preview](#-preview)
 - [📦 Assets](#-assets)
-- [🛠️ Funcionalidades e Tecnologias Estudadas](#%EF%B8%8F-funcionalidades-e-tecnologias-estudadas)
-- [🤯 Desafios e Aprendizados ao longo do caminho](#-desafios-e-aprendizados-ao-longo-do-caminho)
-- [🤔 Como usar](#-como-usar)
-- [💪 Como contribuir](#-como-contribuir)
-- [📝 Licença](#-licença)
+- [🛠️ Features and Technologies Studied](#-features-and-technologies-studied)
+- [🤯 Challenges and Learning along the way](#-challenges-and-learning-along-the-way)
+- [🤔 How to use](#-how-to-use)
+- [💪 How to contribute](#-how-to-contribute)
+- [📝 License](#-license)
 
 ---
 
-<h2>📖 Sobre</h2>
+<h2>📖 About</h2>
 
-Aplicativo de Barbearia para profissionais, onde é possível ter o gerenciamento dos próprios e até de si próprio. Além de possuir o fluxo de agendamento de horários e controle de serviços.
+An app for barber shop professionals, where it is possible to manage your own barber shop and even yourself. In addition to having the flow of scheduling appointments and controlling services.
 
 ---
 
@@ -39,7 +39,7 @@ https://github.com/felipecastrosales/barbershop/assets/59374587/ff81c19d-851f-41
 
 ---   
 
-<h2>🛠️ Funcionalidades e Tecnologias Estudadas</h2>
+<h2>🛠️ Features and Technologies Studied</h2>
 
 - Using Dart 3 powers:
   - Functional Programming (Either) with Pure Dart (using Dart 3 power);
@@ -76,79 +76,80 @@ https://github.com/felipecastrosales/barbershop/assets/59374587/ff81c19d-851f-41
 
 ---
 
-<h2>🤯 Desafios e Aprendizados ao longo do caminho</h2>
+<h2>🤯 Challenges and Learning along the way</h2>
 
-Sem dúvidas o maior aprendizado foi o Riverpod; percebi que ele é bem interessante para o gerenciamento de estado de uma aplicação, indo além em pontos que podem ser cruciais (como poder ter múltiplos providers do mesmo tipo, realizar dispose quando não é mais utilizado entre outras coisas). 
+Without a doubt, the biggest learning experience was Riverpod; I realized that it is very interesting for managing the state of an application, going further in points that can be crucial (such as being able to have multiple providers of the same type, performing dispose when it is no longer used, among other things).
 
-Além disso, foi bem bacana conhecer mais na prática os poderes e uso do Dart 3, como o novo `switch` e o uso do `pattern matching`; que se encaixam muito bem e tornam o código mais objetivo. Outro ponto que foi bem interessante foi o `Either` utilizado, semelhante ao que há [neste artigo](https://codewithandrea.com/articles/flutter-exception-handling-try-catch-result-type/); sem nenhuma dependência externa. Podendo utilizar da programação funcional com o `pattern matching` para tratar os casos de erro e sucesso.
+Furthermore, it was really cool to learn more about the powers and uses of Dart 3 in practice, such as the new `switch` and the use of `pattern matching`; which fit very well and make the code more objective. Another point that was very interesting was the `Either` used, similar to what is [in this article](https://codewithandrea.com/articles/flutter-exception-handling-try-catch-result-type/); without any external dependency. You can use functional programming with `pattern matching` to handle error and success cases.
 
-Outros vários aprendizados foram adquiridos e também reforçados; além de refatorações e melhorias no código feitas ao longo do caminho. Sempre há algo a ser melhorado e aprendido. 🚀
+Various other learnings were acquired and also reinforced; in addition to refactorings and code improvements made along the way. There is always something to be improved and learned. 🚀
 
 ---
 
-<h2>🤔 Como usar</h2>
+<h2>🤔 How to use</h2>
 
 ```
-Configure o ambiente de desenvolvimento na sua máquina:
+Configure the Flutter environment on your machine:
 https://flutter.dev/docs/get-started/install
 
-- Clone o repositório:
+- Clone the repository:
 $ git clone https://github.com/felipecastrosales/barbershop
 
-- Entre no diretório:
+- Enter the directory:
 $ cd barbershop
 
-- Abra no VSCode:
+- Open the project:
 $ code .
 
-- Instale o json_rest_server:
+- Install the json_rest_server:
 $ dart pub global activate json_rest_server
 
-- Inicie o json_rest_server:
+- Enter the api directory:
 $ cd api
 
-- Execute:
+- Run the server:
 $ json_rest_server run
 
-- Instale as dependências:
+- Enter the project directory:
 $ flutter pub get
 
-- Pegue seu ip e ponha no `rest_client`;
+- Get your IP and put on `rest_client`;
 
-- Execute o projeto:
+- Execute the application:
 $ flutter run
 ```
 
 ---
 
-<h2>💪 Como contribuir</h2>
+<h2>💪 How to contribute</h2>
 
-Há várias maneiras de contribuir com esse projeto, como:
+There are several ways to contribute to this project, such as:
+
 ```
-- Faça um fork o projeto.
+- Fork this repository;
 
-- Crie uma nova branch com suas mudanças:
+- Create a branch with your feature:
 $ git checkout -b my-feature
 
-- Salve suas mudanças e faça uma mensagem de commit message sobre suas alterações:
+- Commit your changes:
 $ git commit -m "feature: My new feature"
 
-- Envie suas mudanças:
+- Push your branch:
 $ git push origin my-feature
 
-- Você também abrir uma issue para reportar um bug ou sugerir uma nova feature.
+- Open a pull request on this repository and/or create an issue explaining your problem.
 ```
 
 ---
 
-<h2>📝 Licença</h2>
+<h2>📝 License</h2>
 
-Esse repositório está sobre a Licença MIT, e você pode vê-la no arquivo <a href="https://github.com/felipecastrosales/barbershop/blob/master/LICENSE">LICENSE</a> para mais detalhes. 😉
+This repository is under the MIT License, and you can see it in the <a href="https://github.com/felipecastrosales/barbershop/blob/master/LICENSE">LICENSE</a> file for more details.
 
 ---
 
->Esse projeto foi desenvolvido com ❤️ por **[@Felipe Sales](https://www.linkedin.com/in/felipecastrosales/)**, com o instrutor **[@Rodrigo Rahman](https://br.linkedin.com/in/rodrigo-rahman)**.
-Se isso te ajudou, dê uma ⭐, e contribua, isso irá me ajudar também. 😉
+> This project was developed with ❤️ by **[@Felipe Sales](https://www.linkedin.com/in/felipecastrosales/)**, with the instructor **[@Rodrigo Rahman](https://br .linkedin.com/in/rodrigo-rahman)**.
+If this helped you, give it a ⭐, and contribute, it will help me too. 😉
 
 ---
 

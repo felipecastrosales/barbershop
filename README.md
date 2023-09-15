@@ -33,8 +33,9 @@ https://github.com/felipecastrosales/barbershop/assets/59374587/ff81c19d-851f-41
 
 <h2>📦 Assets</h2>
 
-- <a href="https://www.figma.com/file/QRIXw1KKoFtR4JpTRehO3d/Barbershop?type=design&node-id=0%3A1&mode=design&t=p2w0dxWTvCJQZqdA-1">**`Figma`**</a>;
 - <a href="/api/postman/">**`Postman Collections`**</a>.
+- <a href="https://www.figma.com/file/QRIXw1KKoFtR4JpTRehO3d/Barbershop?type=design&node-id=0%3A1&mode=design&t=p2w0dxWTvCJQZqdA-1">**`Figma`**</a>;
+<img src="https://github.com/felipecastrosales/barbershop/assets/59374587/536a65a6-bfd4-4901-adac-05cc70f6b690" alt="" width="100%"/>
 
 ---   
 
@@ -76,6 +77,12 @@ https://github.com/felipecastrosales/barbershop/assets/59374587/ff81c19d-851f-41
 ---
 
 <h2>🤯 Desafios e Aprendizados ao longo do caminho</h2>
+
+Sem dúvidas o maior aprendizado foi o Riverpod; percebi que ele é bem interessante para o gerenciamento de estado de uma aplicação, indo além em pontos que podem ser cruciais (como poder ter múltiplos providers do mesmo tipo, realizar dispose quando não é mais utilizado entre outras coisas). 
+
+Além disso, foi bem bacana conhecer mais na prática os poderes e uso do Dart 3, como o novo `switch` e o uso do `pattern matching`; que se encaixam muito bem e tornam o código mais objetivo. Outro ponto que foi bem interessante foi o `Either` utilizado, semelhante ao que há [neste artigo](https://codewithandrea.com/articles/flutter-exception-handling-try-catch-result-type/); sem nenhuma dependência externa. Podendo utilizar da programação funcional com o `pattern matching` para tratar os casos de erro e sucesso.
+
+Outros vários aprendizados foram adquiridos e também reforçados; além de refatorações e melhorias no código feitas ao longo do caminho. Sempre há algo a ser melhorado e aprendido. 🚀
 
 ---
 
@@ -140,7 +147,7 @@ Esse repositório está sobre a Licença MIT, e você pode vê-la no arquivo <a 
 
 ---
 
->Esse projeto foi desenvolvido com ❤️ por **[@Felipe Sales](https://www.linkedin.com/in/felipecastrosales/)**, com o instrutor **[@Rodrigo Rahman](https://br.linkedin.com/in/rodrigo-rahman)**, no evento #DartWeek da **[Academia do Flutter](https://academiadoflutter.com.br/)**.<br>
+>Esse projeto foi desenvolvido com ❤️ por **[@Felipe Sales](https://www.linkedin.com/in/felipecastrosales/)**, com o instrutor **[@Rodrigo Rahman](https://br.linkedin.com/in/rodrigo-rahman)**.
 Se isso te ajudou, dê uma ⭐, e contribua, isso irá me ajudar também. 😉
 
 ---

@@ -113,7 +113,7 @@ $ json_rest_server run
 - Enter the project directory:
 $ flutter pub get
 
-- Get your IP and put on `rest_client`;
+- Get your IP and put on `rest_client.dart`;
 
 - Execute the application:
 $ flutter run
@@ -148,7 +148,7 @@ This repository is under the MIT License, and you can see it in the <a href="htt
 
 ---
 
-> This project was developed with ❤️ by **[@Felipe Sales](https://www.linkedin.com/in/felipecastrosales/)**, with the instructor **[@Rodrigo Rahman](https://br .linkedin.com/in/rodrigo-rahman)**.
+> This project was developed with ❤️ by **[@Felipe Sales](https://www.linkedin.com/in/felipecastrosales/)**, with the instructor **[@Rodrigo Rahman](https://linkedin.com/in/rodrigo-rahman)**.
 If this helped you, give it a ⭐, and contribute, it will help me too. 😉
 
 ---
